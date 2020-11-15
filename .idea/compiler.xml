@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chapter_003" />
+        <module name="chapter_002" />
+        <module name="chapter_001" />
+        <module name="chapter_005" />
+        <module name="chapter_004" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chapter_001" target="13" />
+      <module name="chapter_002" target="13" />
+      <module name="chapter_003" target="13" />
+      <module name="chapter_004" target="13" />
+      <module name="chapter_004-DarchetypeArtifactId=maven-archetype-simple" target="1.7" />
+      <module name="chapter_005" target="13" />
+      <module name="job4j_design" target="13" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="chapter_001" options="-XDignore.symbol.file" />
+      <module name="chapter_002" options="-XDignore.symbol.file" />
+      <module name="chapter_003" options="-XDignore.symbol.file" />
+      <module name="chapter_004" options="-XDignore.symbol.file" />
+      <module name="chapter_005" options="-XDignore.symbol.file" />
+    </option>
+  </component>
+</project>
