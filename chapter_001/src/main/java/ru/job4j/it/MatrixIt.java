@@ -23,7 +23,6 @@ public class MatrixIt implements Iterator<Integer> {
         return rsl;
     }
 
-
     @Override
     public boolean hasNext() {
         return row + column < calcAllElem();
@@ -38,7 +37,7 @@ public class MatrixIt implements Iterator<Integer> {
             row++;
             column = 0;
         }
-        while(data[row].length == 0) {
+        while (data[row].length == 0) {
             row++;
         }
         return data[row][column++];
