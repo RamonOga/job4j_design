@@ -4,6 +4,8 @@ package ru.job4j.it;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static org.junit.Assert.assertThat;
+
 public class MatrixIt implements Iterator<Integer> {
     private final int[][] data;
     private int row = 0;
@@ -13,19 +15,19 @@ public class MatrixIt implements Iterator<Integer> {
         this.data = data;
     }
 
-    private int calcAllElem() {
-        int rsl = 0;
+    private boolean isEmpty() {
         for (int[] arr : data) {
-            for (Integer i : arr) {
-                rsl++;
+            if (arr.length != 0) {
+                return false;
             }
         }
-        return rsl;
+        return true;
     }
 
     @Override
     public boolean hasNext() {
-        return row + column < calcAllElem();
+        return !(row == data.length - 1
+                && column == data[data.length - 1].length) && !isEmpty();
     }
 
     @Override
@@ -45,9 +47,10 @@ public class MatrixIt implements Iterator<Integer> {
 
     public static void main(String[] args) {
         int[][] in = {
-                {1}, {}, {}, {}, {2}
+                {}
         };
-        System.out.println(in[0].length);
-        System.out.println(in[1].length);
+        MatrixIt it = new MatrixIt(in);
+        System.out.println(it.hasNext());
+
     }
 }
