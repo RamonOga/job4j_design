@@ -26,7 +26,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if (count > data.length) {
+        if (hasNext()) {
             throw new NoSuchElementException();
         }
         while (!checkEven(count)) {
