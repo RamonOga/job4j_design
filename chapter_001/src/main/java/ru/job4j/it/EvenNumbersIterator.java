@@ -21,7 +21,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         if (count >= data.length) {
             throw new NoSuchElementException();
         }
-        return checkEven(count + 1);
+        return checkEven(count);
     }
 
     @Override
