@@ -61,4 +61,15 @@ public class FlatMapTest {
         FlatMap<Object> flat = new FlatMap<>(data);
         flat.next();
     }
+
+    @Test
+    public void whenTwoEmpty() {
+        Iterator<Iterator<Object>> data = List.of(
+                List.of().iterator(),
+                List.of().iterator(),
+                List.of().iterator()
+        ).iterator();
+        FlatMap<Object> flat = new FlatMap<>(data);
+        assertThat(flat.hasNext(), is(false));
+    }
 }
