@@ -22,12 +22,13 @@ public class MatrixIt implements Iterator<Integer> {
             }
         }
         return true;
-    }
+    }   
 
     @Override
     public boolean hasNext() {
         return !(row == data.length - 1
-                && column == data[data.length - 1].length) && !isEmpty();
+                && column == data[data.length - 1].length)
+                && !isEmpty();
     }
 
     @Override

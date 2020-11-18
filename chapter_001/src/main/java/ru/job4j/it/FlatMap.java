@@ -1,10 +1,7 @@
 package ru.job4j.it;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
-
-import static org.junit.Assert.assertThat;
 
 public class FlatMap<T> implements Iterator<T> {
     private final Iterator<Iterator<T>> data;
