@@ -9,7 +9,7 @@ public class SimpleArrayTest extends TestCase {
 
     @Test
     public void testAdd() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(1);
         simple.add("test");
         int expect = 1;
         Assert.assertEquals(expect, simple.size());
@@ -17,7 +17,7 @@ public class SimpleArrayTest extends TestCase {
 
     @Test
     public void testGet() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(1);
         simple.add('a');
         char expect = 'a';
         Assert.assertEquals(expect, simple.get(0));
@@ -32,7 +32,7 @@ public class SimpleArrayTest extends TestCase {
 
     @Test
     public void testRemove() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(3);
         simple.add(1);
         simple.add(2);
         simple.add(3);
@@ -45,7 +45,7 @@ public class SimpleArrayTest extends TestCase {
 
     @Test
     public void testSet() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(4);
         simple.add(1);
         simple.add(2);
         simple.add(3);
@@ -54,30 +54,29 @@ public class SimpleArrayTest extends TestCase {
         Assert.assertEquals(expect, simple.get(0));
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetEmpty() {
-        SimpleArray simple = new SimpleArray();
-        Assert.assertEquals(null, simple.get(1));
+        SimpleArray simple = new SimpleArray(0);
+        simple.get(1);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testSetEmpty() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(1);
         simple.add("java");
-        boolean expect = false;
-        Assert.assertEquals(expect ,  simple.set(22, "JS"));
+        simple.set(22, "JS");
     }
 
     @Test
     public void testIteratorThenEmpty() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(0);
         Iterator<String> it = simple.iterator();
         Assert.assertFalse(it.hasNext());
     }
 
     @Test
     public void testIterator() {
-        SimpleArray simple = new SimpleArray();
+        SimpleArray simple = new SimpleArray(2);
         simple.add(1);
         simple.add(22);
         Iterator<Integer> it = simple.iterator();

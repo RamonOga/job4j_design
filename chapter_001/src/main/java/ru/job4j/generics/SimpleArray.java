@@ -7,12 +7,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private Object[] data;
     private int size;
-    private int position = 0;
-
-    public SimpleArray() {
-        data = new Object[size];
-        size = 0;
-    }
+    private int count = 0;
 
     public SimpleArray(T[] input) {
         data = input;
@@ -42,52 +37,38 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T input) {
-        data = giveArrayMore();
-        data[size - 1] = input;
+        if (count >= size) {
+            System.out.println("a!!!");
+            throw new IndexOutOfBoundsException();
+        }
+        data[count++] = input;
     }
 
     public Object get(int input) {
         if (!inRange(input)) {
-            return null;
+            System.out.println("g!!!");
+            throw new IndexOutOfBoundsException();
         }
         return data[input];
     }
 
     public boolean set(int index, T value) {
         if (!inRange(index)) {
-            return false;
+            System.out.println("s!!!");
+            throw new IndexOutOfBoundsException();
         }
         data[index] = value;
         return true;
     }
 
     public boolean remove(int input) {
-        Object[] newArray = new Object[size - 1];
         if (!inRange(input)) {
-            return false;
+            System.out.println("r!!!");
+            throw new IndexOutOfBoundsException();
         }
-        data[input] = null;
         System.arraycopy(data, input + 1, data, input, size - input - 1);
-        data = giveArrayLess();
+        data[size - 1] = null;
         return true;
-    }
-
-    private Object[] giveArrayMore() {
-        Object[] newArray = new Object[size + 1];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = data[i];
-        }
-        size++;
-        return newArray;
-    }
-
-    private Object[] giveArrayLess() {
-        Object[] newArray = new Object[size - 1];
-        for (int i = 0; i < size - 1; i++) {
-            newArray[i] = data[i];
-        }
-        size--;
-        return newArray;
     }
 
     public void print() {
@@ -101,6 +82,7 @@ public class SimpleArray<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+            private int position = 0;
 
             @Override
             public boolean hasNext() {
