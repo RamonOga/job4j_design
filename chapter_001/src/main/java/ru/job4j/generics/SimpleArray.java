@@ -29,16 +29,15 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private boolean inRange(int input) {
-        return input >= 0 && input < size;
+        return input >= 0 && input < count;
     }
 
     public int size() {
-        return size;
+        return count;
     }
 
     public void add(T input) {
         if (count >= size) {
-            System.out.println("a!!!");
             throw new IndexOutOfBoundsException();
         }
         data[count++] = input;
@@ -54,7 +53,6 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public boolean set(int index, T value) {
         if (!inRange(index)) {
-            System.out.println("s!!!");
             throw new IndexOutOfBoundsException();
         }
         data[index] = value;
@@ -63,11 +61,11 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public boolean remove(int input) {
         if (!inRange(input)) {
-            System.out.println("r!!!");
             throw new IndexOutOfBoundsException();
         }
         System.arraycopy(data, input + 1, data, input, size - input - 1);
         data[size - 1] = null;
+        count--;
         return true;
     }
 
