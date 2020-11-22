@@ -43,12 +43,11 @@ public class SimpleArray<T> implements Iterable<T> {
         data[count++] = input;
     }
 
-    public Object get(int input) {
+    public T get(int input) {
         if (!inRange(input)) {
-            System.out.println("g!!!");
             throw new IndexOutOfBoundsException();
         }
-        return data[input];
+        return (T) data[input];
     }
 
     public boolean set(int index, T value) {
