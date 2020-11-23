@@ -22,7 +22,7 @@ public class SimpleArray<T> implements Iterable<T> {
   }
 
   public void add(T model) {
-    if (!(realSize < size)) {
+    if (!(size < realSize)) {
       getArrayMore();
     }
     data[size] = model;
@@ -32,7 +32,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
   private void getArrayMore() {
     data = Arrays.copyOf(data, realSize * 2);
-    realSize *= 2;
+    this.realSize *= 2;
   }
 
   @Override
