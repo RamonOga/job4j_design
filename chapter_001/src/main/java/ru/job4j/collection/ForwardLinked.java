@@ -23,7 +23,13 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head == null) {
             throw new NoSuchElementException();
         }
-        Node<T> node = head;
+        Node<T> node;
+        if (head.next == null) {
+            node = head;
+            head = null;
+            return node.value;
+        }
+        node = head;
         head = head.next;
         return node.value;
     }
@@ -32,19 +38,21 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head == null) {
             throw new NoSuchElementException();
         }
-        Node<T> node = head;
-        Node<T> rsl;
-        if (head.next != null) {
-            rsl = head;
+        Node<T> one;
+        Node<T> two;
+        if (head.next == null) {
+            two = head;
             head = null;
-            return rsl.value;
+            return two.value;
         }
-        while (node.next.next != null) {
-            node = node.next;
+        one = head;
+        two = one;
+        while (one.next != null) {
+            two = one;
+            one = one.next;
         }
-        rsl = node.next;
-        node.next = null;
-        return rsl.value;
+        two.next = null;
+        return one.value;
     }
 
     @Override
@@ -80,13 +88,6 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public static void main(String[] args) {
-        ForwardLinked fo = new ForwardLinked();
-
-        fo.add("J");
-        for (Iterator<String> it =  fo.iterator(); it.hasNext();) {
-            System.out.println(it.next());
-        }
-        System.out.println("=====>>>" + fo.deleteLast());
     }
 
 }
