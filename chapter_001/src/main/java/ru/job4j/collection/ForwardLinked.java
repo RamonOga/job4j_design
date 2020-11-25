@@ -55,6 +55,16 @@ public class ForwardLinked<T> implements Iterable<T> {
         return one.value;
     }
 
+    public void revert() {
+        ForwardLinked<T> tmp = new ForwardLinked<>();
+        while (!this.checkHead()) {
+            tmp.add(this.deleteLast());
+        }
+        while (!tmp.checkHead()) {
+            this.add(tmp.deleteFirst());
+        }
+    }
+
     public boolean checkHead() {
         return head == null;
     }
