@@ -55,6 +55,10 @@ public class ForwardLinked<T> implements Iterable<T> {
         return one.value;
     }
 
+    public boolean checkHead() {
+        return head == null;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
@@ -86,8 +90,4 @@ public class ForwardLinked<T> implements Iterable<T> {
             this.next = next;
         }
     }
-
-    public static void main(String[] args) {
-    }
-
 }
