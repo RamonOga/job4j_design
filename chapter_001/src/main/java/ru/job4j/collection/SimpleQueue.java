@@ -5,7 +5,7 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        if (out.checkHead()) {
+        if (out.isEmpty()) {
             reloadOutStack();
         }
        return out.pop();
@@ -16,7 +16,7 @@ public class SimpleQueue<T> {
     }
 
     private void reloadOutStack() {
-        while (!in.checkHead()) {
+        while (!in.isEmpty()) {
             out.push(in.pop());
         }
     }

@@ -14,4 +14,8 @@ public class SimpleStack<T> {
     public boolean checkHead() {
        return linked.checkHead();
     }
+
+    public boolean isEmpty() {
+        return !linked.iterator().hasNext();
+    }
 }
