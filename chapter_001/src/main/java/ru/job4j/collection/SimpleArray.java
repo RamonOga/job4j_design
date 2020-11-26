@@ -30,6 +30,24 @@ public class SimpleArray<T> implements Iterable<T> {
     modCount++;
   }
 
+  public boolean contains(T model) {
+    return indexOf(model) >= 0;
+  }
+
+  public int indexOf(T model) {
+    Object[] arr = data;
+    for (int i = 0; i < size; i++) {
+      if (arr[i].equals(model)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  public int size() {
+    return this.size;
+  }
+
   private void getArrayMore() {
     data = Arrays.copyOf(data, realSize * 2);
     this.realSize *= 2;
