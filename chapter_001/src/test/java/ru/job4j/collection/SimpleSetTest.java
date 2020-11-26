@@ -31,4 +31,15 @@ public class SimpleSetTest {
         Assert.assertFalse(it.hasNext());
     }
 
+    @Test
+    public void whenAddNulls() {
+        SimpleSet<Integer> s = new SimpleSet<>();
+        s.add(1);
+        s.add(null);
+        s.add(null);
+        Integer expected = 1;
+        Iterator<Integer> it = s.iterator();
+        Assert.assertEquals(expected, it.next());
+    }
+
 }

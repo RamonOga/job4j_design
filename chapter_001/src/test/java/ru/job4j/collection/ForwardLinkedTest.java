@@ -95,7 +95,20 @@ public class ForwardLinkedTest {
         Assert.assertEquals(1, linked.size());
         linked.deleteLast();
         Assert.assertEquals(0, linked.size());
+    }
 
+    @Test(expected = NoSuchElementException.class)
+    public void whenRevertNull() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.revert();
+    }
 
+    @Test
+    public void whenAddAndRevertOneElement() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.revert();
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(1));
     }
 }
