@@ -37,10 +37,11 @@ public class SimpleArray<T> implements Iterable<T> {
   public int indexOf(T model) {
     Object[] arr = data;
     for (int i = 0; i < size; i++) {
-      if (arr[i].equals(model)) {
+      if (Objects.equals(arr[i], model)) {
         return i;
       }
     }
+
     return -1;
   }
 
