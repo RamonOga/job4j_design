@@ -5,11 +5,13 @@ import java.util.NoSuchElementException;
 
 public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;
+    private int size = 0;
 
     public void add(T value) {
         Node<T> node = new Node<T>(value, null);
         if (head == null) {
             head = node;
+            size++;
             return;
         }
         Node<T> tail = head;
@@ -17,6 +19,7 @@ public class ForwardLinked<T> implements Iterable<T> {
             tail = tail.next;
         }
         tail.next = node;
+        size++;
     }
 
     public T deleteFirst() {
@@ -27,10 +30,12 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head.next == null) {
             node = head;
             head = null;
+            size--;
             return node.value;
         }
         node = head;
         head = head.next;
+        size--;
         return node.value;
     }
 
@@ -43,6 +48,7 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head.next == null) {
             two = head;
             head = null;
+            size--;
             return two.value;
         }
         one = head;
@@ -52,21 +58,38 @@ public class ForwardLinked<T> implements Iterable<T> {
             one = one.next;
         }
         two.next = null;
+        size--;
         return one.value;
     }
 
     public void revert() {
-        ForwardLinked<T> tmp = new ForwardLinked<>();
-        while (!this.checkHead()) {
-            tmp.add(this.deleteLast());
+        Node<T> one = null;
+        Node<T> two = head;
+        Node<T> three = head.next;
+       while (three != null) {
+           two.next = one;
+           one = two;
+           two = three;
+           three = two.next;
+           two.next = one;
+       }
+       head = two;
+    }
+
+    public void print() {
+        Iterator<T> it = this.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + ", ");
         }
-        while (!tmp.checkHead()) {
-            this.add(tmp.deleteFirst());
-        }
+        System.out.println();
     }
 
     public boolean checkHead() {
         return head == null;
+    }
+
+    public int size() {
+        return this.size;
     }
 
     @Override
