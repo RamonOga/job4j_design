@@ -70,9 +70,6 @@ public class ForwardLinkedTest {
     public void whenHasNextFalse() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
         Iterator<Integer> it = linked.iterator();
-        System.out.println(linked.size());
-        Assert.assertTrue(it.hasNext());
-        it.next();
         Assert.assertFalse(it.hasNext());
     }
 
