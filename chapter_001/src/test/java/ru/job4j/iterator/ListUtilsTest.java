@@ -35,7 +35,7 @@ public class ListUtilsTest {
     public void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
         assertThat(Arrays.asList(2, 4, 6, 8, 10)
-                , Is.is(ListUtils.removeIf(input, (a -> a % 2 == 0))));
+                , Is.is(ListUtils.removeIf(input, (a -> a % 2 == 1))));
     }
 
     @Test
@@ -44,11 +44,11 @@ public class ListUtilsTest {
                 , "kotlin", "c++", "cobol"
                 , "c#", "delphi", "php"
                 , "python", "css"));
-        assertThat(Arrays.asList("java", "ONLY JAVA!!!"
-                , "ONLY JAVA!!!", "ONLY JAVA!!!", "ONLY JAVA!!!"
-                , "ONLY JAVA!!!", "ONLY JAVA!!!", "ONLY JAVA!!!"
-                , "ONLY JAVA!!!", "ONLY JAVA!!!")
-                , Is.is(ListUtils.replaceIf(input, (a -> a.equals("java")), "ONLY JAVA!!!")));
+        assertThat(Arrays.asList("JAVA!!!", "js"
+                , "kotlin", "c++", "cobol"
+                , "c#", "delphi", "php"
+                , "python", "css")
+                , Is.is(ListUtils.replaceIf(input, (a -> a.equals("java")), "JAVA!!!")));
     }
 
     @Test

@@ -34,7 +34,7 @@ public class ListUtils {
         ListIterator<T> it = list.listIterator();
         while (it.hasNext()) {
             T t = it.next();
-            if (!filter.test(t)) {
+            if (filter.test(t)) {
                 it.remove();
             }
         }
@@ -45,7 +45,7 @@ public class ListUtils {
         ListIterator<T> it = list.listIterator();
         while (it.hasNext()) {
             T t = it.next();
-            if (!filter.test(t)) {
+            if (filter.test(t)) {
                 it.set(value);
             }
         }
