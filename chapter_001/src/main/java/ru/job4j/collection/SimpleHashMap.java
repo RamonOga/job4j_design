@@ -1,16 +1,20 @@
 package ru.job4j.collection;
 
 import java.util.Iterator;
-import java.util.Objects;
+import java.util.NoSuchElementException;
 
-public class SimpleHashMap<K, T> implements Iterable<ForwardLinkedForMap<K, T>> {
-    private int arraySize;
+public class SimpleHashMap<K, T> implements Iterable<K> {
+    private int tableSize;
     private int size;
-    private ForwardLinkedForMap<K, T>[] table;
+    private NodeMap[] table;
 
     public SimpleHashMap() {
-        this.table = new ForwardLinkedForMap[16];
-        this.arraySize = 16;
+        table = new NodeMap[16];
+        tableSize = 16;
+    }
+
+    public int tableSize() {
+        return tableSize;
     }
 
     public int size() {
@@ -18,26 +22,32 @@ public class SimpleHashMap<K, T> implements Iterable<ForwardLinkedForMap<K, T>> 
     }
 
     public int hash(Object o) {
-        return o.hashCode() & (arraySize - 1);
+        return o.hashCode() & (tableSize - 1);
+    }
+
+    private void arraySizeUp() {
+        NodeMap<K, T>[] tmp = table;
+        NodeMap<K, T> node;
+        table = new NodeMap[tableSize * 2];
+        tableSize *= 2;
+        size = 0;
+       for (int i = 0; i < tmp.length; i++) {
+           if (tmp[i] != null) {
+               node = tmp[i];
+               this.insert(node.key, node.value);
+           }
+       }
     }
 
     public boolean insert(K key, T value) {
+        if ((int) ((size + 1) * 2) >= tableSize) {
+            arraySizeUp();
+        }
         int index = hash(key);
-        if (table[index] == null) {
-            table[index] = new ForwardLinkedForMap<>();
+        if (table[index] != null) {
+            return false;
         }
-        NodeMap<K, T> node = table[index].getHead();
-        if (node != null) {
-            while (node != null) {
-                if (node.hash == key.hashCode()) {
-                    if (Objects.equals(node.key, key)) {
-                        return false;
-                    }
-                }
-                node = node.next;
-            }
-        }
-        table[index].add(key, value, key.hashCode());
+        table[index] = new NodeMap<K, T>(key, value, null, key.hashCode());
         size++;
         return true;
     }
@@ -47,30 +57,41 @@ public class SimpleHashMap<K, T> implements Iterable<ForwardLinkedForMap<K, T>> 
         if (table[index] == null) {
             return null;
         }
-        NodeMap<K, T> node = table[index].getHead();
-        while (node != null) {
-            if (node.hash == key.hashCode()) {
-               if (Objects.equals(node.key, key)) {
-                   return node.value;
-               }
-            }
-            node = node.next;
+        return (T) table[index].value;
+    }
+
+    public boolean delete(K key) {
+        int index = hash(key);
+        if (table[index] == null
+                || table[index].hash != key.hashCode()) {
+            return false;
         }
-        return null;
+        table[index] = null;
+        size--;
+        return true;
     }
 
     @Override
-    public Iterator<ForwardLinkedForMap<K, T>> iterator() {
-        return new Iterator<ForwardLinkedForMap<K, T>>() {
-            int iterCount;
+    public Iterator<K> iterator() {
+        return new Iterator<K>() {
+            NodeMap<K, T> node;
+            int iterCount = 0;
+
             @Override
             public boolean hasNext() {
-                return iterCount < table.length;
+                while (table[iterCount] == null
+                        && iterCount < table.length - 1) {
+                    iterCount++;
+                }
+                return table[iterCount] != null;
             }
 
             @Override
-            public ForwardLinkedForMap<K, T> next() {
-                return table[iterCount++];
+            public K next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return (K) table[iterCount++].key;
             }
         };
     }
