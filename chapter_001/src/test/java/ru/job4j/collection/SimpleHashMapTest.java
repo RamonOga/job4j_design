@@ -151,7 +151,4 @@ public class SimpleHashMapTest {
         Assert.assertEquals(20, simple.size());
         Assert.assertEquals(64, simple.tableSize());
     }
-
-
-
 }

@@ -41,12 +41,12 @@ public class LinkedListTest {
         linkedList.add('J');
         Iterator<Character> it = linkedList.iterator();
         Assert.assertTrue(it.hasNext());
-        Assert.assertEquals((Character)'J', it.next());
+        Assert.assertEquals((Character) 'J', it.next());
         Assert.assertFalse(it.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void NoSuchElementException() {
+    public void noSuchElementException() {
         LinkedList<Boolean> linkedList = new LinkedList<>();
         linkedList.add(true);
         linkedList.add(false);
@@ -58,7 +58,7 @@ public class LinkedListTest {
     }
 
     @Test(expected = ConcurrentModificationException.class)
-    public void ConcurrentModificationException() {
+    public void concurrentModificationException() {
         LinkedList<Boolean> linkedList = new LinkedList<>();
         linkedList.add(true);
         linkedList.add(false);

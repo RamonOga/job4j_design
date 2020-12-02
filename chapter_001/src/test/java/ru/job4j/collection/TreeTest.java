@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
 
 public class TreeTest {
     @Test
@@ -32,6 +30,7 @@ public class TreeTest {
                 is(false)
         );
     }
+
     @Test
     public void whenMore3Children() {
         Tree<Integer> tree = new Tree<>(1);
@@ -42,6 +41,7 @@ public class TreeTest {
         tree.add(5, 6);
         Assert.assertFalse(tree.isBinary());
     }
+
     @Test
     public void whenAll2Children() {
         Tree<Integer> tree = new Tree<>(1);

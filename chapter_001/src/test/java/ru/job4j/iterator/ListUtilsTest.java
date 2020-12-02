@@ -34,28 +34,28 @@ public class ListUtilsTest {
     @Test
     public void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        assertThat(Arrays.asList(2, 4, 6, 8, 10)
-                , Is.is(ListUtils.removeIf(input, (a -> a % 2 == 1))));
+        assertThat(Arrays.asList(2, 4, 6, 8, 10),
+                Is.is(ListUtils.removeIf(input, (a -> a % 2 == 1))));
     }
 
     @Test
     public void whenReplaceIf() {
-        List<String> input = new ArrayList<>(Arrays.asList("java", "js"
-                , "kotlin", "c++", "cobol"
-                , "c#", "delphi", "php"
-                , "python", "css"));
-        assertThat(Arrays.asList("JAVA!!!", "js"
-                , "kotlin", "c++", "cobol"
-                , "c#", "delphi", "php"
-                , "python", "css")
-                , Is.is(ListUtils.replaceIf(input, (a -> a.equals("java")), "JAVA!!!")));
+        List<String> input = new ArrayList<>(Arrays.asList("java", "js",
+                "kotlin", "c++", "cobol",
+                "c#", "delphi", "php",
+                "python", "css"));
+        assertThat(Arrays.asList("JAVA!!!", "js",
+                "kotlin", "c++", "cobol",
+                "c#", "delphi", "php",
+                 "python", "css"),
+                 Is.is(ListUtils.replaceIf(input, (a -> a.equals("java")), "JAVA!!!")));
     }
 
     @Test
     public void whenRemoveAll() {
         List<Integer> input1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
         List<Integer> input2 = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
-        assertThat(Arrays.asList(2, 4, 6, 8, 10)
-                , Is.is(ListUtils.removeAll(input1, input2)));
+        assertThat(Arrays.asList(2, 4, 6, 8, 10),
+                Is.is(ListUtils.removeAll(input1, input2)));
     }
 }
