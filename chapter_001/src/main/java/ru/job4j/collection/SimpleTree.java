@@ -6,6 +6,8 @@ import java.util.Optional;
 
 public interface SimpleTree<E> {
 
+    boolean isBinary();
+
     boolean add(E parent, E child);
 
     Optional<Node<E>> findBy(E value);

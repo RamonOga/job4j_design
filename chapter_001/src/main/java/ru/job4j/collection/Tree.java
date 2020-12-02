@@ -12,6 +12,23 @@ class Tree<E> implements SimpleTree<E> {
     }
 
     @Override
+    public boolean isBinary() {
+        boolean rsl = true;
+        Node<E> node;
+        List<Node<E>> list = new LinkedList<>();
+        list.add(root);
+        while (!list.isEmpty()) {
+            node = list.remove(0);
+            if (!node.children.isEmpty() && node.children.size() > 2) {
+                rsl = false;
+                break;
+            }
+            list.addAll(node.children);
+        }
+        return rsl;
+    }
+
+    @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
         Node<E> input = new Node<>(child);
