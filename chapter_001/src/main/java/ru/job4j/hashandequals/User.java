@@ -25,7 +25,12 @@ public class User {
 
     @Override
     public int hashCode() {
-        int rsl = Objects.hash(name, children, birthday);
+        int rsl = 1;
+
+        rsl =   Integer.hashCode(children);
+        rsl = 31 * rsl + name.hashCode();
+        rsl = 31 * rsl + birthday.hashCode();
+        //int rsl = Objects.hash(name, children, birthday);
        //System.out.println(rsl);
         return rsl;
     }
