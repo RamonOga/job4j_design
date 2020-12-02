@@ -1,16 +1,21 @@
 package ru.job4j.collection;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleHashMap<K, T> implements Iterable<K> {
     private int tableSize;
     private int size;
     private NodeMap[] table;
+    private int modCount;
+    private final float loadFactor = 0.5F;
 
     public SimpleHashMap() {
         table = new NodeMap[16];
         tableSize = 16;
+        modCount = 0;
     }
 
     public int tableSize() {
@@ -31,6 +36,7 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
         table = new NodeMap[tableSize * 2];
         tableSize *= 2;
         size = 0;
+        modCount = 0;
        for (int i = 0; i < tmp.length; i++) {
            if (tmp[i] != null) {
                node = tmp[i];
@@ -40,7 +46,7 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
     }
 
     public boolean insert(K key, T value) {
-        if ((int) ((size + 1) * 2) >= tableSize) {
+        if ((int) (tableSize * loadFactor) <= size + 1) {
             arraySizeUp();
         }
         int index = hash(key);
@@ -49,12 +55,14 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
         }
         table[index] = new NodeMap<K, T>(key, value, null, key.hashCode());
         size++;
+        modCount++;
         return true;
     }
 
     public T get(K key) {
         int index = hash(key);
-        if (table[index] == null) {
+        if (table[index] == null
+                || !Objects.equals(table[index].key, key)) {
             return null;
         }
         return (T) table[index].value;
@@ -62,12 +70,16 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
 
     public boolean delete(K key) {
         int index = hash(key);
-        if (table[index] == null
-                || table[index].hash != key.hashCode()) {
+        if (table[index] == null) {
+            return false;
+        }
+        if (table[index].hash != key.hashCode()
+                && !Objects.equals(table[index].key, key)) {
             return false;
         }
         table[index] = null;
         size--;
+        modCount++;
         return true;
     }
 
@@ -76,6 +88,7 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
         return new Iterator<K>() {
             NodeMap<K, T> node;
             int iterCount = 0;
+            int iterModCount = modCount;
 
             @Override
             public boolean hasNext() {
@@ -90,6 +103,9 @@ public class SimpleHashMap<K, T> implements Iterable<K> {
             public K next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
+                }
+                if (iterModCount != modCount) {
+                    throw new ConcurrentModificationException();
                 }
                 return (K) table[iterCount++].key;
             }
