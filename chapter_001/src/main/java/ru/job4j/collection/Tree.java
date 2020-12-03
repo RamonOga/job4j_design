@@ -1,7 +1,5 @@
 package ru.job4j.collection;
 
-import ru.job4j.generics.Predator;
-
 import java.util.LinkedList;
 
 import java.util.*;
@@ -19,10 +17,11 @@ class Tree<E> implements SimpleTree<E> {
         Predicate<Node<E>> pred = new Predicate<Node<E>>() {
             @Override
             public boolean test(Node<E> node) {
-                return !node.children.isEmpty() && node.children.size() > 2;
+                return !node.children.isEmpty()
+                        && node.children.size() > 2;
             }
         };
-        Optional<Node<E>> rsl = xzMethod(pred);
+        Optional<Node<E>> rsl = findMethod(pred);
         return rsl.isEmpty();
     }
 
@@ -35,25 +34,29 @@ class Tree<E> implements SimpleTree<E> {
                 return node.value.equals(value);
             }
         };
-       rsl = xzMethod(pred);
+       rsl = findMethod(pred);
        return rsl;
     }
 
     @Override
     public boolean add(E parent, E child) {
-        boolean rsl = false;
-        Optional<Node<E>> op = findBy(parent);
-        if (op.isPresent()) {
-            Node<E> node = op.get();
-            if (!node.children.contains(child)) {
-                  node.children.add(new Node<E>(child));
-                  rsl = true;
+        Optional<Node<E>> rsl;
+        Predicate<Node<E>> pred = new Predicate<Node<E>>() {
+            @Override
+            public boolean test(Node<E> node) {
+                return node.value.equals(parent)
+                        && !node.children.contains(child);
             }
-        }
-        return rsl;
+        };
+       rsl = findMethod(pred);
+       if (rsl.isPresent()) {
+           rsl.get().children.add(new Node<E>(child));
+           return true;
+       }
+       return false;
     }
 
-    public Optional<Node<E>> xzMethod(Predicate<Node<E>> pred) {
+    private Optional<Node<E>> findMethod(Predicate<Node<E>> pred) {
         Optional<Node<E>> rsl = Optional.empty();
         List<Node<E>> list = new LinkedList<>();
         list.add(root);
@@ -69,28 +72,3 @@ class Tree<E> implements SimpleTree<E> {
         return rsl;
     }
 }
-
-  /*Node<E> node;
-        List<Node<E>> list = new LinkedList<>();
-        list.add(root);
-        while (!list.isEmpty()) {
-            node = list.remove(0);
-            if (!node.children.isEmpty() && node.children.size() > 2) {
-                rsl = false;
-                break;
-            }
-            list.addAll(node.children);
-        }
-
-         Optional<Node<E>> rsl = Optional.empty();
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
-        while (!data.isEmpty()) {
-            Node<E> el = data.poll();
-            if (el.value.equals(value)) {
-                rsl = Optional.of(el);
-                break;
-            }
-            data.addAll(el.children);
-        }
-        return rsl;*/
