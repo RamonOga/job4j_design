@@ -31,19 +31,12 @@ class Tree<E> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-        Node<E> input = new Node<>(child);
-        Node<E> node;
-        List<Node<E>> list = new LinkedList();
-        list.add(root);
-        while (!list.isEmpty()) {
-            node = list.remove(0);
-            if (node.value.equals(parent)
-                    && !node.children.contains(input)) {
-                node.children.add(input);
-                rsl = true;
-                break;
+        Optional<Node<E>> op = findBy(parent);
+        if (op.isPresent()) {
+            if (!op.get().children.contains(child)) {
+                  op.get().children.add(new Node<E>(child));
+                  rsl = true;
             }
-            list.addAll(node.children);
         }
         return rsl;
     }
