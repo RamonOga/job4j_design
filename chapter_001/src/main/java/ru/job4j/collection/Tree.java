@@ -33,8 +33,9 @@ class Tree<E> implements SimpleTree<E> {
         boolean rsl = false;
         Optional<Node<E>> op = findBy(parent);
         if (op.isPresent()) {
-            if (!op.get().children.contains(child)) {
-                  op.get().children.add(new Node<E>(child));
+            Node<E> node = op.get();
+            if (!node.children.contains(child)) {
+                  node.children.add(new Node<E>(child));
                   rsl = true;
             }
         }
