@@ -57,7 +57,7 @@ public class TreeTest {
         Tree<Integer> tree = new Tree<>(1);
         tree.add(1, 3);
         tree.add(1, 3);
-        int expect = 2;
+        int expect = 1;
         Assert.assertEquals(expect, tree.findBy(1).get().children.size());
     }
 }
