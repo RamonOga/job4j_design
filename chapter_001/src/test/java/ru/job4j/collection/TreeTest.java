@@ -51,4 +51,13 @@ public class TreeTest {
         tree.add(4, 6);
         Assert.assertTrue(tree.isBinary());
     }
+
+    @Test
+    public void whenAddChildrenAlreadyHas() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 3);
+        tree.add(1, 3);
+        int expect = 2;
+        Assert.assertEquals(expect, tree.findBy(1).get().children.size());
+    }
 }

@@ -14,13 +14,8 @@ class Tree<E> implements SimpleTree<E> {
 
     @Override
     public boolean isBinary() {
-        Predicate<Node<E>> pred = new Predicate<Node<E>>() {
-            @Override
-            public boolean test(Node<E> node) {
-                return !node.children.isEmpty()
+        Predicate<Node<E>> pred = node -> !node.children.isEmpty()
                         && node.children.size() > 2;
-            }
-        };
         Optional<Node<E>> rsl = findMethod(pred);
         return rsl.isEmpty();
     }
@@ -28,12 +23,7 @@ class Tree<E> implements SimpleTree<E> {
     @Override
     public Optional<Node<E>> findBy(E value) {
         Optional<Node<E>> rsl;
-        Predicate<Node<E>> pred = new Predicate<Node<E>>() {
-            @Override
-            public boolean test(Node<E> node) {
-                return node.value.equals(value);
-            }
-        };
+        Predicate<Node<E>> pred = node -> node.value.equals(value);
        rsl = findMethod(pred);
        return rsl;
     }
@@ -41,20 +31,17 @@ class Tree<E> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         Optional<Node<E>> rsl;
-        Predicate<Node<E>> pred = new Predicate<Node<E>>() {
-            @Override
-            public boolean test(Node<E> node) {
-                return node.value.equals(parent)
-                        && !node.children.contains(child);
+        Predicate<Node<E>> childPred = node -> node.children.contains(new Node<E>(child));
+        Predicate<Node<E>> equalsPred = node -> node.value.equals(parent);
+        if (findMethod(childPred).isEmpty()) {
+            rsl = findMethod(equalsPred);
+            if (rsl.isPresent()) {
+                rsl.get().children.add(new Node<E>(child));
+                return true;
             }
-        };
-       rsl = findMethod(pred);
-       if (rsl.isPresent()) {
-           rsl.get().children.add(new Node<E>(child));
-           return true;
-       }
-       return false;
-    }
+        }
+        return false;
+     }
 
     private Optional<Node<E>> findMethod(Predicate<Node<E>> pred) {
         Optional<Node<E>> rsl = Optional.empty();
