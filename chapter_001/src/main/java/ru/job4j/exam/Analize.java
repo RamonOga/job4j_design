@@ -7,9 +7,8 @@ import java.util.function.Predicate;
 public class Analize {
     public Info diff(List<User> previous, List<User> current) {
         Info info = new Info();
-        info.toDeleted(findMain(previous, current));
         info.toAdd(findMain(current, previous));
-        findChange(previous, current, info);
+        find(previous, current, info);
         return info;
     }
 
@@ -23,17 +22,17 @@ public class Analize {
         return count;
     }
 
-    private void findChange(List<User> previous, List<User> current, Info info) {
-        for (User u1 : previous) {
-            for (User u2 : current) {
-                if (u1.equals(u2)) {
-                    if (!Objects.equals(u1.getName(), u2.getName())) {
-                        info.toChange(1);
-                        break;
-                    }
+    private void find(List<User> one, List<User> two, Info info) {
+        for (User u : one) {
+            int index = two.indexOf(u);
+            if (index != -1) {
+                if (!Objects.equals(u.getName(), two.get(index).getName())) {
+                    info.toChange(1);
+                    break;
                 }
+            } else {
+                info.toDeleted(1);
             }
-
         }
     }
 }
