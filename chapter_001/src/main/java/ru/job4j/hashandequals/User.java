@@ -14,6 +14,11 @@ public class User {
         this.birthday = birthday;
     }
 
+    public User(String name, int children) {
+        this.name = name;
+        this.children = children;
+    }
+
     @Override
     public String toString() {
         return "User{"
@@ -47,5 +52,21 @@ public class User {
         return children == user.children
                  && Objects.equals(name, user.name)
                  && Objects.equals(birthday, user.birthday);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getChildren() {
+        return children;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setChildren(int children) {
+        this.children = children;
     }
 }
