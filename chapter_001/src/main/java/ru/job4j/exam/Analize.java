@@ -1,38 +1,26 @@
 package ru.job4j.exam;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Predicate;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Analize {
     public Info diff(List<User> previous, List<User> current) {
-        Info info = new Info();
-        info.toAdd(findMain(current, previous));
-        find(previous, current, info);
-        return info;
-    }
-
-    private int findMain(List<User> one, List<User> two) {
-        int count = 0;
-        for (User u : one) {
-            if (!two.contains(u)) {
-                count++;
+      Info info = new Info();
+      Map<Integer, User> map = previous.stream()
+              .collect(Collectors.toMap(User::getId, user -> user));
+        for (User u : current) {
+            User tmp = map.get(u.getId());
+            if (tmp == null) {
+                info.toAdd(1);
+                continue;
             }
-        }
-        return count;
-    }
-
-    private void find(List<User> one, List<User> two, Info info) {
-        for (User u : one) {
-            int index = two.indexOf(u);
-            if (index != -1) {
-                if (!Objects.equals(u.getName(), two.get(index).getName())) {
-                    info.toChange(1);
-                    break;
-                }
-            } else {
-                info.toDeleted(1);
+            if (!tmp.equals(u)) {
+            info.toChange(1);
             }
+            map.remove(u.getId());
         }
+        info.toDeleted(map.size());
+      return info;
     }
 }
