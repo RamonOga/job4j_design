@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Analize {
     public Info diff(List<User> previous, List<User> current) {
       Info info = new Info();
+      int count = 0;
       Map<Integer, User> map = previous.stream()
               .collect(Collectors.toMap(User::getId, user -> user));
         for (User u : current) {
@@ -18,9 +19,9 @@ public class Analize {
             if (!tmp.equals(u)) {
             info.toChange(1);
             }
-            map.remove(u.getId());
+            count++;
         }
-        info.toDeleted(map.size());
+        info.toDeleted(map.size() - count);
       return info;
     }
 }

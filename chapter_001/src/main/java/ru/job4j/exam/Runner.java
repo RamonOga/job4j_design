@@ -2,21 +2,15 @@ package ru.job4j.exam;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Runner {
+public class Runner<T extends Number> {
     public static void main(String[] args) {
-        List<? extends Number> list1 = new ArrayList<>();
-        List<? super Number> list2 = new ArrayList<>();
-        Number n = 12;
-        Object o = 12;
-        Integer i = 12;
-        list1.add(n);
-        list2.add(n);
-        list1.add(o);
-        list2.add(o);
-        list1.add(i);
-        list2.add(i);
+        Map<Integer, User> u = new HashMap<>();
+        u.put(1, new User(1, "2"));
+        System.out.println(u.get(2));
     }
 }
 

@@ -48,7 +48,7 @@ public class AnalizeTest {
         Assert.assertEquals(2, info.getAdded());
     }
     @Test
-    public void testWhenOneAdded3() {
+    public void testWhenNullAdded() {
         Analize anal = new Analize();
         Info info = anal.diff(users1, users2);
         Assert.assertEquals(0, info.getAdded());
@@ -69,5 +69,4 @@ public class AnalizeTest {
         Info info = anal.diff(users1, users2);
         Assert.assertEquals(1, info.getDeleted());
     }
-
 }

@@ -36,13 +36,23 @@ public class User {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return id == user.id
+                && Objects.equals(name, user.getName());
     }
 
     @Override
     public int hashCode() {
         int rsl = 1;
         rsl = 31 * rsl + Integer.hashCode(id);
+        rsl = 31 * rsl + name.hashCode();
         return rsl;
+    }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + '}';
     }
 }
