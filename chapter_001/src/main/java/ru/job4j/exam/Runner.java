@@ -10,7 +10,7 @@ public class Runner<T extends Number> {
     public static void main(String[] args) {
         Map<Integer, User> u = new HashMap<>();
         u.put(1, new User(1, "2"));
-        System.out.println(u.get(2));
+        System.out.println(u.get(2)                                                                                                                                                                             );
     }
 }
 

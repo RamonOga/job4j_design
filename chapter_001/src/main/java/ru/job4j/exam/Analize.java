@@ -21,7 +21,7 @@ public class Analize {
             }
             count++;
         }
-        info.toDeleted(map.size() - count);
+info.toDeleted(map.size() - count);
       return info;
     }
 }
