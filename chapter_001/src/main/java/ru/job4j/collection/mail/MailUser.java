@@ -12,6 +12,11 @@ public class MailUser {
         this.mailList = new ArrayList<>();
     }
 
+    public MailUser(String name, List<String> list) {
+        this.name = name;
+        this.mailList = list;
+    }
+
     public void addMail(String mail) {
         if (mail != null) {
             mailList.add(mail);
