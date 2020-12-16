@@ -25,6 +25,19 @@ public class MailMap {
         }
     }
 
+    public List<MailUser> addAll(List<MailUser> list) {
+        List<MailUser> rsl = new ArrayList<>();
+        MailMap mailMap = new MailMap();
+        for (MailUser mu : list) {
+            mailMap.addUser(mu);
+        }
+        for (String s : mailMap.getMailMap().keySet()) {
+            rsl.add(new MailUser(s, new ArrayList<>(mailMap.getMailMap().get(s))));
+        }
+
+        return rsl;
+    }
+
     public Map<String, Set<String>> getMailMap() {
         return mailMap;
     }
