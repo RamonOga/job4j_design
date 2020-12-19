@@ -2,7 +2,6 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FilterReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,24 +14,19 @@ public class Config {
     }
 
     public void load() {
-        StringJoiner joiner = new StringJoiner(System.lineSeparator());
-        List<String> list = null;
+        List<String[]> list = null;
+        final String[] b = {};
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-                list = read.lines()
-                        .collect(Collectors.toList());
+            list = read.lines()
+                    .filter(a -> a.length() > 0 && !a.contains("#"))
+                    .map((a) -> a.split("="))
+                    .filter(a -> a.length == 2 && (a[0] != null && a[1] != null))
+                    .peek(a -> values.put(a[0], a[1]))
+            .collect(Collectors.toList());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (list != null) {
-            for (String s : list) {
-                String[] tmp = s.split("=");
-                if (tmp.length != 2) {
-                    continue;
-                }
-                this.values.put(tmp[0], tmp[1]);
-            }
-        }
-        System.out.println(values);
     }
 
     public String value(String key) {
@@ -56,7 +50,9 @@ public class Config {
 
     public static void main(String[] args) {
         Config conf = new Config("./chapter_002/data/pair_without_comment.properties");
-        //System.out.println(conf.toString());
         conf.load();
+        System.out.println(">>>>" + conf.values);
+        System.out.println(">>>>" + conf.values.get("name4"));
+
     }
 }
