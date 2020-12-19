@@ -15,7 +15,6 @@ public class Config {
 
     public void load() {
         List<String[]> list = null;
-        final String[] b = {};
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             list = read.lines()
                     .filter(a -> a.length() > 0 && !a.contains("#"))
@@ -53,6 +52,5 @@ public class Config {
         conf.load();
         System.out.println(">>>>" + conf.values);
         System.out.println(">>>>" + conf.values.get("name4"));
-
     }
 }
