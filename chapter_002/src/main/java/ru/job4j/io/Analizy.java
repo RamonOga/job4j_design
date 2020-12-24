@@ -9,7 +9,7 @@ import java.util.List;
 public class Analizy {
     public void unavailable(String source, String target) {
         List<String> list = new ArrayList<>();
-        StringJoiner joiner = new StringJoiner("");
+        
         int count = 0;
         StringBuilder text = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(source))) {
@@ -23,7 +23,7 @@ public class Analizy {
                     text.append(s.split(" ")[1]).append(System.lineSeparator());
                     count = 0;
                     list.add(text.toString());
-                    text.delete(0, text.length() - 1);
+                    text.delete(0, text.length());
                 }
                 s = in.readLine();
             }
@@ -38,6 +38,5 @@ public class Analizy {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

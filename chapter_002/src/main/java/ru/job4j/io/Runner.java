@@ -1,14 +1,20 @@
 package ru.job4j.io;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 public class Runner {
     public static void main(String[] args) {
-        Format f = new SimpleDateFormat("hh:mm:ss a");
-        String strResult = f.format(new Date());
-        System.out.println(strResult);
-        System.out.println(new Date());
+        Path p = Paths.get(".");
+        Iterator<Path> it = p.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next().toString());
+        }
     }
 }
