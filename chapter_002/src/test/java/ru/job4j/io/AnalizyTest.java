@@ -18,6 +18,10 @@ public class AnalizyTest {
 
         @Test
         public void unavailableTest()throws IOException {
+            Analizy anal = new Analizy();
+            boolean rsl = true;
+            String expected1 = "10:57:01;10:59:01";
+            String expected2 = "11:01:02;11:02:02";
             File source = folder.newFile("source.txt");
             File target = folder.newFile("target.txt");
             try (PrintWriter out = new PrintWriter(source)) {
@@ -32,20 +36,19 @@ public class AnalizyTest {
                 out.write("500 11:01:02");
                 out.append(System.lineSeparator());
                 out.write("200 11:02:02");
-            Analizy anal = new Analizy();
-            boolean rsl = true;
-            String expected1 = "10:57:01;10:59:01";
-            String expected2 = "11:01:02;11:02:02";
+            }
             anal.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
-            System.out.println(target);
             try (BufferedReader in = new BufferedReader
                     (new FileReader
                             (target.getAbsolutePath()))) {
                 String line = in.readLine();
+                int count = 1;
                 while (line != null) {
                     if (!line.equals(expected1) && !line.equals(expected2)) {
                         rsl = false;
                     }
+                    System.out.println("iteration number " + count);
+                    count++;
                     line = in.readLine();
                 }
             } catch (Exception e) {
@@ -53,5 +56,4 @@ public class AnalizyTest {
             }
             Assert.assertTrue(rsl);
         }
-    }
 }
