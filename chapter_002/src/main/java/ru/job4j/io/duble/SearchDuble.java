@@ -12,7 +12,7 @@ import java.util.Set;
 public class SearchDuble {
 
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:\\projects\\job4j_design\\chapter_002\\data\\test");
+        Path start = Paths.get("C:\\Users\\Admin\\IdeaProjects\\job4j_design\\chapter_002\\data\\test");
         Map<FileDubleData, List<Path>> map = search(start);
          for (FileDubleData fileData : map.keySet()) {
              if (map.get(fileData).size() > 1) {
