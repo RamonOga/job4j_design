@@ -15,6 +15,14 @@ public class SearchDubleVisitor implements FileVisitor<Path> {
         return dataMap;
     }
 
+    public Map<String, List<Path>> getDublePathsList() {
+        Map<String, List<Path>> rsl = new HashMap<>();
+        for (FileDubleData fbd : dataMap.keySet()) {
+            rsl.put(fbd.getName(), dataMap.get(fbd));
+        }
+        return rsl;
+    }
+
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         return FileVisitResult.CONTINUE;
