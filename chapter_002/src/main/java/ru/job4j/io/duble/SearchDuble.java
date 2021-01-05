@@ -11,17 +11,9 @@ public class SearchDuble {
 
     public static void main(String[] args) throws IOException {
         Path start = Paths.get("C:\\projects\\job4j_design\\chapter_002\\data\\test");
-        Map<FileDubleData, List<Path>> map = search(start);
-         for (FileDubleData fileData : map.keySet()) {
-             if (map.get(fileData).size() > 1) {
-                 System.out.println(map.get(fileData));
-             }
-         }
-    }
-
-    public static Map<FileDubleData, List<Path>> search(Path root) throws IOException {
         SearchDubleVisitor searcher = new SearchDubleVisitor();
-        Files.walkFileTree(root, searcher);
-        return searcher.getDataMap();
+        Files.walkFileTree(start, searcher);
+        searcher.createDubleMap();
+        searcher.printDuble();
     }
 }
