@@ -13,9 +13,12 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Incorrect argumets");
+        }
         for (String s : args) {
             String[] tmp = s.split("=");
-            if (!Objects.equals(tmp[0].charAt(0), '-') || tmp.length != 2) {
+            if (!Objects.equals(tmp[0].charAt(0), '-') || tmp.length < 2) {
                 throw new IllegalArgumentException("Incorrect argumets");
             }
 
