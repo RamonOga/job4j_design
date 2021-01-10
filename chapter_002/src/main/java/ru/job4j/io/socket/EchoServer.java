@@ -7,9 +7,9 @@ import java.net.Socket;
 public class EchoServer {
     public static void main(String[] args) throws IOException {
         ServerAnswer answer = new ServerAnswer();
+        StringBuffer buffer = new StringBuffer();
         boolean run = true;
-        StringBuffer strBuffer = new StringBuffer();
-        try (ServerSocket server = new ServerSocket(9000)) {
+        try (ServerSocket server = new ServerSocket(1023)) {
             while (run) {
                 Socket socket = server.accept();
                 try (OutputStream out = socket.getOutputStream();
@@ -18,14 +18,17 @@ public class EchoServer {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
                         System.out.println(str);
-                        strBuffer.append(str);
+                        buffer.append(str);
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\r".getBytes());
+                    answer.answer(buffer.toString());
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     out.write("Hello, dear friend.\r\n".getBytes());
-                    out.write(answer.answer(strBuffer.toString()).getBytes());
-                    run = answer.checkExit(strBuffer.toString());
+                    out.write((answer.getAnswer() + "\n").getBytes());
+                    run = answer.getCheckExit();
+                    buffer.delete(0, buffer.length());
                 }
             }
         }
+
     }
 }
