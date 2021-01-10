@@ -1,5 +1,9 @@
 package ru.job4j.io.chatbot;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,9 +21,9 @@ public class Runner {
         List<String> answersList = io.getAnswers();
         Random random = new Random();
         UserInterface inter = new UserInterface();
+        inter.sayHello();
         String text = inter.scanUserData();
 
-        inter.sayHello();
         while (!text.equals(out)) {
             String answer = answersList
                     .get(random.nextInt(answersList.size() -  1));
@@ -53,5 +57,6 @@ public class Runner {
     public static void main(String[] args) {
         Runner runner = new Runner();
         runner.run();
+
     }
 }
