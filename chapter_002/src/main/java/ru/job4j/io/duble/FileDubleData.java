@@ -4,14 +4,21 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 public class FileDubleData implements Comparable<FileDubleData> {
-    String name;
-    Long size;
-    Path path;
+
+    private String name;
+    private Long size;
 
     public FileDubleData(Path path) {
         this.name = path.getFileName().toString();
         this.size = path.toFile().length();
-        this.path = path;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getSize() {
+        return size;
     }
 
     @Override
@@ -37,16 +44,11 @@ public class FileDubleData implements Comparable<FileDubleData> {
         return Objects.hash(name, size);
     }
 
-    public Path getPath() {
-        return path;
-    }
-
     @Override
     public String toString() {
         String rsl = "file name is: " + name
                 + " size: " + size
-                + " full path of file: " + path;
+                + " full path of file: ";
         return rsl;
     }
-
 }

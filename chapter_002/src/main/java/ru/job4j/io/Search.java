@@ -9,7 +9,7 @@ import java.util.List;
 public class Search {
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
-            throw new IllegalArgumentException("Enter root folder and file extensions for search and.");
+            throw new IllegalArgumentException("Enter path and extension file");
         }
         Path start = Paths.get(args[0]);
         search(start, args[1]).forEach(System.out::println);

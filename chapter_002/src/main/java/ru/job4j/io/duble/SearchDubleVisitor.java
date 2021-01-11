@@ -10,9 +10,29 @@ import java.nio.file.attribute.BasicFileAttributes;
 public class SearchDubleVisitor implements FileVisitor<Path> {
 
     private Map<FileDubleData, List<Path>> dataMap = new HashMap<>();
+    private Map<String, List<Path>> dubleMap = new HashMap<>();
 
     public Map<FileDubleData, List<Path>> getDataMap() {
         return dataMap;
+    }
+
+    public Map<String, List<Path>> getDubleMap() {
+        return dubleMap;
+    }
+
+    public void createDubleMap() {
+        for (FileDubleData fbd : dataMap.keySet()) {
+            if (dataMap.get(fbd).size() > 1) {
+                dubleMap.put(fbd.getName(), dataMap.get(fbd));
+            }
+        }
+    }
+
+    public void printDuble() {
+        for (String s : dubleMap.keySet()) {
+            System.out.println("Name: >" + s + "< Paths: > " + dubleMap.get(s).toString() + "< ");
+        }
+
     }
 
     @Override
