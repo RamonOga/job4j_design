@@ -1,11 +1,16 @@
 package ru.job4j.io.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.job4j.io.logs.UsageLog4j;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class EchoServer {
-    public static void main(String[] args) throws IOException {
+    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+
+    public static void main(String[] args) {
         ServerAnswer answer = new ServerAnswer();
         StringBuffer buffer = new StringBuffer();
         boolean run = true;
@@ -26,8 +31,12 @@ public class EchoServer {
                     out.write((answer.getAnswer() + "\n").getBytes());
                     run = answer.getCheckExit();
                     buffer.delete(0, buffer.length());
+                } catch (Exception e) {
+                    LOG.error("Something went wrong", e);
                 }
             }
+        } catch (Exception e) {
+            LOG.error("Something went wrong", e);
         }
 
     }
