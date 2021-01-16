@@ -13,4 +13,8 @@ public class Contact {
                 + "phone='" + phone + '\''
                 + '}';
     }
+
+    public String getPhone() {
+        return phone;
+    }
 }
