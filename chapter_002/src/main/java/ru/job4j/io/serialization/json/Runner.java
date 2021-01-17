@@ -41,6 +41,22 @@ class Driver {
     boolean adequate = false;
     String[] categories = new String[]{"B", "B1"};
 
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isAdequate() {
+        return adequate;
+    }
+
+    public String[] getCategories() {
+        return categories;
+    }
+
     @Override
     public String toString() {
         return "Driver{"
