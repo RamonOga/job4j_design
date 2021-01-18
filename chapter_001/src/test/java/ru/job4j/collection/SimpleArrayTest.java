@@ -1,8 +1,6 @@
 package ru.job4j.collection;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
+import org.junit.Assert;
 import org.junit.Test;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -15,7 +13,7 @@ public class SimpleArrayTest {
     SimpleArray<String> array = new SimpleArray<>();
     array.add("first");
     String rsl = array.get(0);
-    assertThat(rsl, is("first"));
+    Assert.assertEquals(rsl, "first");
   }
 
   @Test
@@ -23,7 +21,7 @@ public class SimpleArrayTest {
     SimpleArray<String> array = new SimpleArray<>();
     array.add("first");
     String rsl = array.iterator().next();
-    assertThat(rsl, is("first"));
+    Assert.assertEquals(rsl, "first");
   }
 
   @Test(expected = IndexOutOfBoundsException.class)

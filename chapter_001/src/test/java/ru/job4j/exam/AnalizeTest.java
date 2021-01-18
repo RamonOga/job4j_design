@@ -24,7 +24,6 @@ public class AnalizeTest {
         );
     }
 
-
     @Test
     public void testWhenNotChanges() {
         Analize anal = new Analize();
@@ -39,6 +38,7 @@ public class AnalizeTest {
         Info info = anal.diff(users1, users2);
         Assert.assertEquals(1, info.getAdded());
     }
+
     @Test
     public void testWhenOneAdded2() {
         Analize anal = new Analize();
@@ -47,6 +47,7 @@ public class AnalizeTest {
         Info info = anal.diff(users1, users2);
         Assert.assertEquals(2, info.getAdded());
     }
+
     @Test
     public void testWhenNullAdded() {
         Analize anal = new Analize();

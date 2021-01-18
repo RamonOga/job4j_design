@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-import static org.hamcrest.Matchers.is;
 
 public class TreeTest {
     @Test
@@ -15,20 +14,16 @@ public class TreeTest {
         tree.add(1, 4);
         tree.add(4, 5);
         tree.add(5, 6);
-        assertThat(
-                tree.findBy(6).isPresent(),
-                is(true)
-        );
+        Assert.assertTrue(tree.findBy(6).isPresent());
+
     }
 
     @Test
     public void when6ElFindNotExitThenOptionEmpty() {
         Tree<Integer> tree = new Tree<>(1);
         tree.add(1, 2);
-        assertThat(
-                tree.findBy(7).isPresent(),
-                is(false)
-        );
+                Assert.assertFalse(tree.findBy(7).isPresent());
+
     }
 
     @Test

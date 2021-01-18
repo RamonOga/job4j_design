@@ -39,9 +39,7 @@ public class AnalizyTest {
                 out.write("200 11:02:02");
             }
             anal.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
-            try (BufferedReader in = new BufferedReader
-                    (new FileReader
-                            (target.getAbsolutePath()))) {
+            try (BufferedReader in = new BufferedReader(new FileReader(target.getAbsolutePath()))) {
                 rsl1 = in.readLine();
                 rsl2 = in.readLine();
 
