@@ -1,9 +1,6 @@
 package ru.job4j.io.serialization.xml;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -15,6 +12,8 @@ public class UserComp {
     private int timeOut;
     private boolean toTrace;
     private OS os;
+    @XmlElementWrapper(name = "programs")
+    @XmlElement(name = "program")
     private String[] programs;
 
     public UserComp() {
