@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MailUser {
-     private List<String> mailList = new ArrayList<>();
+     private List<String> mailList;
      private String name;
 
     public MailUser(String name) {
