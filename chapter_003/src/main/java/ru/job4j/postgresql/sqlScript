@@ -1,0 +1,9 @@
+create table accounts(
+    id serial primary key,
+    name varchar(255),
+    balance int8,
+    currency bool
+);
+insert into accounts (name, balance, currency) values ('ramon' , 1000, false);
+update accounts set balance = 10000;
+delete from accounts where id = 1;
