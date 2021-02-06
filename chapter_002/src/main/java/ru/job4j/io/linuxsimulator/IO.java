@@ -3,7 +3,7 @@ package ru.job4j.io.linuxsimulator;
 import java.util.Scanner;
 
 public class IO {
-    private Scanner scan = new Scanner(System.in);
+    private final Scanner scan = new Scanner(System.in);
     private static IO io;
 
     private IO() {
@@ -16,8 +16,22 @@ public class IO {
         return io;
     }
 
-    public String scan() {
-       return scan.nextLine();
+    public String[] scan() {
+       return splitInput(scan.nextLine());
+    }
+
+    private String[] splitInput(String command) {
+        String[] rsl = new String[]{"", ""};
+        if (command != null) {
+            String[] tmp = command.split(" ");
+            if (tmp.length == 2) {
+                rsl = tmp;
+            } else {
+                rsl[0] = tmp[0];
+                rsl[1] = "-1";
+            }
+        }
+        return rsl;
     }
 
     public void greeting() {
