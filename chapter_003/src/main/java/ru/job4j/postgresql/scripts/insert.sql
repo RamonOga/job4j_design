@@ -12,25 +12,21 @@ update item_user set role_id=1 where name='Admin';
 update item_user set role_id=2 where name='User';
 update item_user set role_id=2 where name='User2';
 update item_user set role_id=2 where name='User3';
-
-insert into item (name, preority, user_id) values ('need help', '2', 2);
-insert into category (name, item_id) values ('stuped user', 1);
-insert into comments (name, text, item_id) values ('need help', 'I don.t see my comp', 1);
-insert into attaches (name, path, item_id) values ('photo', 'c:\img\1.jpg', 1);
-insert into state (name, done, item_id) values ('need help', false, 1);
-
-insert into item (name, preority, user_id) values ('network don.t work', '5', 3);
-insert into category (name, item_id) values ('network', 2);
-insert into comments (name, text, item_id) values ('network', 'don.t open pornohub', 2);
-insert into attaches (name, path, item_id) values ('photo', 'c:\img\p.jpg', 2);
-insert into state (name, done, item_id) values ('network', false, 2);
-
-insert into item (name, preority, user_id) values ('we have a backups?', '10', 4);
-insert into category (name, item_id) values ('backups', 3);
-insert into comments (name, text, item_id) values ('backups', 'where are ours backups, man?', 3);
-insert into attaches (name, path, item_id) values ('backups', 'c:\img\b.jpg', 3);
-insert into state (name, done, item_id) values ('backups', true, 3);
-
+insert into category (name) values ('stuped users');
+insert into category (name) values ('network');
+insert into category (name) values ('OMG, what to do');
+insert into state (status) values ('finish');
+insert into state (status) values ('in progress');
+insert into state (status) values ('not started');
+insert into item (name, preority, user_id, category_id, state_id) values ('need help', '2', 2, 1, 1);
+insert into comments (text, item_id) values ('I don.t see my comp', 1);
+insert into attaches (path, item_id) values ('c:\img\1.jpg', 1);
+insert into item (name, preority, user_id, category_id, state_id) values ('network don.t work', '5', 3, 2, 2);
+insert into comments (text, item_id) values ('don.t open pornohub', 2);
+insert into attaches (path, item_id) values ('c:\img\p.jpg', 2);
+insert into item (name, preority, user_id, category_id, state_id) values ('we have a backups?', '10', 4, 3, 3);
+insert into comments (text, item_id) values ('where are ours backups, man?', 3);
+insert into attaches (path, item_id) values ('c:\img\b.jpg', 3);
 select * from item_user;
 select * from role;
 select * from rules;
