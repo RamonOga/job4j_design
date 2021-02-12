@@ -13,9 +13,6 @@ public class Runner {
                 case "cd":
                     shell.cd(userLine[1]);
                     break;
-                case "ls":
-                    shell.ls(userLine[1]);
-                    break;
                 case "pwd":
                     shell.pwd();
                     break;
