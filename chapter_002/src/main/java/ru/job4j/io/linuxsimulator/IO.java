@@ -26,6 +26,8 @@ public class IO {
             String[] tmp = command.split(" ");
             if (tmp.length == 2) {
                 rsl = tmp;
+            } else {
+                rsl[0] = tmp[0];
             }
         }
         return rsl;
