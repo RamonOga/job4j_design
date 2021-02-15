@@ -12,14 +12,19 @@ select * from product where expired_date < current_date + interval '1 month';
 select * from product where price = (select max(price) from product);
 
 -- 5. Написать запрос, который выводит количество всех продуктов определенного типа.
-select t.name, p.name from product as p join type as t on p.type_id = t.id and t.name = 'beer';
+select t.name, sum(p.quantity) from type as t
+join product as p on p.type_id = t.id
+group by t.name, p.type_id, t.id
+having p.type_id = t.id;
 
 -- 6. Написать запрос получение всех продуктов с типом "СЫР" и "МОЛОКО"
 select p.name, t.name, p.price, p.quantity, p.expired_date from product as p
-          join type as t on p.type_id = t.id and (t.name = 'cheese' or t.name = 'milk');
+          join type as t
+          on p.type_id = t.id and (t.name = 'cheese' or t.name = 'milk');
 
 -- 7. Написать запрос, который выводит тип продуктов, которых осталось меньше 10 штук.
 select * from product as p where quantity < 10;
 
 -- 8. Вывести все продукты и их тип.
-select p.name, t.name from product as p join type as t on p.type_id = t.id;
+select p.name, t.name from product as p
+join type as t on p.type_id = t.id;
