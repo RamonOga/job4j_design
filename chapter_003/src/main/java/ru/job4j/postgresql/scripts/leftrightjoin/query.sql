@@ -1,3 +1,5 @@
+select e.name, d.name from emploees as e left join deportments on e.id >0;
+
 -- Используя left и right join написать запросы, которые давали бы одинаковый результат.
 select d.name as Отдел, e.name as Работник
 from deportments d
