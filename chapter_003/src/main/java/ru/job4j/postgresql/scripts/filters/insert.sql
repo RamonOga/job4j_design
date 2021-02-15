@@ -15,7 +15,7 @@ insert into product (name, type_id, expired_date, price, quantity ) values ('sen
 insert into product (name, type_id, expired_date, price, quantity ) values ('junior milk', 3, date '2021-02-02', 40, 5);
 insert into product (name, type_id, expired_date, price, quantity ) values ('middle milk', 3, date '2021-03-03', 50, 10);
 insert into product (name, type_id, expired_date, price, quantity ) values ('senior milk', 3, date '2021-04-04', 60, 15);
-insert into product (name, type_id, expired_date, price, quantity ) values ('icecream', 3, date '2021-04-04', 60, 15);
+insert into product (name, type_id, expired_date, price, quantity ) values ('icecream', 3, date '2021-04-04', 95, 5);
 
 insert into product (name, type_id, expired_date, price, quantity ) values ('russian beer', 4, date '2021-02-02', 40, 5);
 insert into product (name, type_id, expired_date, price, quantity ) values ('middle beer', 4, date '2021-03-03', 60, 10);
