@@ -10,13 +10,10 @@ import java.util.stream.Collectors;
 
 public class JDBCTest {
     public static void main(String[] args) throws ClassNotFoundException {
-
         startConnection(parsProp("url"), parsProp("login"), parsProp("password"));
-
     }
 
     public static void startConnection(String url, String login, String pass) throws ClassNotFoundException {
-
         Class.forName("org.postgresql.Driver");
         try (Connection conn = DriverManager.getConnection(url, login, pass)) {
             DatabaseMetaData md = conn.getMetaData();

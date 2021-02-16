@@ -1,6 +1,6 @@
 insert into body (name, type, color) values ('rs', 'sedan', 'yellow');
 insert into body (name, type, color) values ('rh', 'hatchback', 'red');
-insert into body (name, type, color) values ('r', 'universal', 'blue');
+insert into body (name, type, color) values ('ru', 'universal', 'blue');
 insert into body (name, type, color) values ('cs', 'segan', 'silver');
 
 insert into transmission (name, type) values ('r1', 'manual');
