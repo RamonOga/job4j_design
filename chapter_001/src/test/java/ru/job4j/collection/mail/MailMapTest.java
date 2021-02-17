@@ -2,12 +2,10 @@ package ru.job4j.collection.mail;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class MailMapTest {
     MailUser user1 = new MailUser("user1");
@@ -63,6 +61,7 @@ public class MailMapTest {
 
     }
 
+    @Ignore
     @Test
     public void test() {
         MailMap mailMap = new MailMap();
@@ -71,6 +70,26 @@ public class MailMapTest {
         mailMap.addUser(user3);
         mailMap.addUser(user4);
         mailMap.addUser(user5);
+        System.out.println(mailMap.getMailMap());
+    }
+
+    @Test
+    public void addThenThreeUsers() {
+        MailMap mailMap = new MailMap();
+        MailUser userA = new MailUser("user1");
+        MailUser userB = new MailUser("user2");
+        MailUser userC = new MailUser("user3");
+        MailUser userD = new MailUser("user4");
+        userA.addMail("1@mail.ru");
+        userB.addMail("2@mail.ru");
+        userC.addMail("3@mail.ru");
+        userD.addMail("1@mail.ru");
+        userD.addMail("2@mail.ru");
+        userD.addMail("3@mail.ru");
+        mailMap.addUser(userA);
+        mailMap.addUser(userB);
+        mailMap.addUser(userC);
+        mailMap.addUser(userD);
         System.out.println(mailMap.getMailMap());
     }
 }

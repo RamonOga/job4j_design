@@ -9,16 +9,15 @@ public class Runner {
       io.greeting();
       String[] userLine = io.scan();
       while (!userLine[0].equals("exit")) {
-            switch (userLine[0]) {
-                case "cd":
-                    shell.cd(userLine[1]);
-                    break;
-                case "pwd":
-                    shell.pwd();
-                    break;
-                default:
-                    shell.cnf();
-            }
+          switch (userLine[0]) {
+              case "cd" -> {
+                  shell.cd(userLine[1]);
+              }
+              case "pwd" -> {
+                  shell.pwd();
+              }
+              default -> shell.cnf();
+          }
             userLine = io.scan();
         }
     }
