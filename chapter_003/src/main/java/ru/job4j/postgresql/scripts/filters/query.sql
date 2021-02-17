@@ -6,7 +6,7 @@ select p.name, t.name from product as p join type as t on p.type_id = t.id and t
 select * from product where name like '%icecream%';
 
 -- 3. Написать запрос, который выводит все продукты, срок годности которых заканчивается в следующем месяце.
-select * from product where extract (month from expired_date) = extract (month from current_date) + 1;
+select * from product where extract (month from expired_date) = extract (month from current_date + interval '1 month');
 
 -- 4. Написать запрос, который выводит самый дорогой продукт.
 select * from product where price = (select max(price) from product);
