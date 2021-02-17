@@ -1,16 +1,16 @@
 package ru.job4j.jdbc;
 
-import javax.swing.text.html.Option;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JDBCTest {
     public static void main(String[] args) throws ClassNotFoundException {
-        startConnection(parsProp("url"), parsProp("login"), parsProp("password"));
+        Map<String, String> properties = parsProp("app.properties");
+        startConnection(properties.get("url"), properties.get("login"), properties.get("password"));
     }
 
     public static void startConnection(String url, String login, String pass) throws ClassNotFoundException {
@@ -27,20 +27,14 @@ public class JDBCTest {
         }
     }
 
-    public static String parsProp(String input) {
-        Optional<String> rsl = Optional.empty();
-        try (BufferedReader dr = new BufferedReader(new FileReader("app.properties"))) {
-            rsl = dr.lines()
-                    .filter(a -> a.contains(input))
-                    .findFirst();
+    public static Map<String, String> parsProp(String fileProperties) {
+        Map<String, String> rsl = new HashMap<>();
+        try (BufferedReader dr = new BufferedReader(new FileReader(fileProperties))) {
+            dr.lines().map(a -> a.split("=")).forEach(a -> rsl.put(a[0], a[1]));
         } catch (IOException e) {
             e.fillInStackTrace();
             System.out.println(e.getMessage());
         }
-        if (rsl.isPresent()) {
-            return rsl.get().split("=")[1];
-        } else {
-            throw new IllegalArgumentException("wrong parameter for pars: " + input);
-        }
+        return rsl;
     }
 }
