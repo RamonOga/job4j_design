@@ -6,10 +6,7 @@ public class Runner {
         City c2 = new City(101, "Almet", 140000);
         City c3 = new City(102, "Kzn", 1500000);
         PrepareStatementDemo psd = new PrepareStatementDemo();
-        psd.update()
+
         psd.findAll().forEach(System.out::println);
-
-
-
     }
 }
