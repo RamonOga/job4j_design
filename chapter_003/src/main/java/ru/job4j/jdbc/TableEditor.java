@@ -26,52 +26,32 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) {
-        try(Statement stat = connection.createStatement()) {
-            String query = String.format(
-                    "create table %s (%s, %s);"
-                    , tableName, "id serial primary key"
-                    , "name varchar(255)"
-            );
-            stat.execute(query);
-        } catch (SQLException sq) {
-            sq.printStackTrace();
-        }
+        String query = String.format(
+                "create table %s (%s, %s);"
+                , tableName, "id serial primary key"
+                , "name varchar(255)"
+        );
+        executeQuery(query);
     }
 
     public void dropTable(String tableName) {
-        try(Statement stat = connection.createStatement()) {
-            String query = String.format("drop table %s;", tableName);
-            stat.execute(query);
-        } catch (SQLException sq) {
-            sq.printStackTrace();
-        }
+        String query = String.format("drop table %s;", tableName);
+        executeQuery(query);
     }
 
     public void addColumn(String tableName, String columnName, String type) {
-        try(Statement stat = connection.createStatement()) {
-            String query = String.format("alter table %s add column %s %s;", tableName, columnName, type);
-            stat.execute(query);
-        } catch (SQLException se) {
-                se.printStackTrace();
-        }
+        String query = String.format("alter table %s add column %s %s;", tableName, columnName, type);
+        executeQuery(query);
     }
 
     public void dropColumn(String tableName, String columnName) {
-        try(Statement stat = connection.createStatement()) {
-            String query = String.format("alter table %s drop column %s;", tableName, columnName);
-            stat.execute(query);
-        } catch (SQLException se) {
-            se.printStackTrace();
-        }
+        String query = String.format("alter table %s drop column %s;", tableName, columnName);
+        executeQuery(query);
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) {
-        try(Statement stat = connection.createStatement()) {
-            String query = String.format("alter table %s rename column %s to %s;", tableName, columnName, newColumnName);
-            stat.execute(query);
-        } catch (SQLException se) {
-            se.printStackTrace();
-        }
+        String query = String.format("alter table %s rename column %s to %s;", tableName, columnName, newColumnName);
+        executeQuery(query);
     }
 
     public String getScheme(String tableName) throws SQLException {
@@ -86,6 +66,14 @@ public class TableEditor implements AutoCloseable {
             }
         }
         return scheme.toString();
+    }
+
+    private void executeQuery(String query) {
+        try(Statement stat = connection.createStatement()) {
+            stat.execute(query);
+        } catch (SQLException sq) {
+            sq.printStackTrace();
+        }
     }
 
     @Override
