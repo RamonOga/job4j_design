@@ -6,7 +6,6 @@ import java.util.Properties;
 public class TableEditor implements AutoCloseable {
 
     private Connection connection;
-
     private Properties properties;
 
     public TableEditor(Properties properties) {
@@ -17,9 +16,9 @@ public class TableEditor implements AutoCloseable {
     private void initConnection() {
         try {
         Class.forName("org.postgresql.Driver");
-        connection = DriverManager.getConnection(properties.getProperty("url1")
-                , properties.getProperty("login")
-                , properties.getProperty("password"));
+        connection = DriverManager.getConnection(properties.getProperty("url1"),
+                properties.getProperty("login"),
+                properties.getProperty("password"));
         } catch (Exception e) {
             e.printStackTrace();
         }
