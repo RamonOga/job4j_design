@@ -1,9 +1,13 @@
 package ru.job4j.html;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 public class SqlRuParse {
     public static void main(String[] args) throws Exception {
