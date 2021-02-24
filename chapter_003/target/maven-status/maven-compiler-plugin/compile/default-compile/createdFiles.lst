@@ -1,1 +1,5 @@
+ru\job4j\jdbc\spammer\User.class
+ru\job4j\quartz\AlertRabbit.class
 ru\job4j\App.class
+ru\job4j\quartz\AlertRabbit$Rabbit.class
+ru\job4j\jdbc\spammer\ImportDB.class
