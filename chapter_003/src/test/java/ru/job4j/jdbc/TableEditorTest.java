@@ -28,7 +28,7 @@ public class TableEditorTest {
 
     @Test()
     public void whenCreateTable() {
-        try(FileInputStream fis = new FileInputStream("test_app.properties")) {
+        try (FileInputStream fis = new FileInputStream("test_app.properties")) {
             Properties prop = new Properties();
             prop.load(fis);
             TableEditor tb = new TableEditor(prop);

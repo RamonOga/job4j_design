@@ -26,9 +26,9 @@ public class TableEditor implements AutoCloseable {
 
     public void createTable(String tableName) {
         String query = String.format(
-                "create table %s (%s, %s);"
-                , tableName, "id serial primary key"
-                , "name varchar(255)"
+                "create table %s (%s, %s);",
+                tableName, "id serial primary key",
+                "name varchar(255)"
         );
         executeQuery(query);
     }
@@ -68,7 +68,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void executeQuery(String query) {
-        try(Statement stat = connection.createStatement()) {
+        try (Statement stat = connection.createStatement()) {
             stat.execute(query);
         } catch (SQLException sq) {
             sq.printStackTrace();

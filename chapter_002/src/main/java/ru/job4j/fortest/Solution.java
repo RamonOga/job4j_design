@@ -12,8 +12,8 @@ class Solution {
         StringBuffer tmp = new StringBuffer();
         int width = (n * 2) - 1;
         for (int j = 0; j < n; j++) {
-            for (int i = 0; i < (n*2) - 1; i++) {
-                if ((width - n) == i || (((width - n) - j ) == i) || (((width - n) + j) == i)) {
+            for (int i = 0; i < (n * 2) - 1; i++) {
+                if ((width - n) == i || (((width - n) - j) == i) || (((width - n) + j) == i)) {
                     tmp.append("*");
                 } else {
                     tmp.append(" ");

@@ -11,7 +11,7 @@ public class AlertRabbit {
     public static void main(String[] args) {
         try {
             List<Long> store = new ArrayList<>();
-            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler(); // Создаем задачу.
             scheduler.start();
             JobDataMap data = new JobDataMap();
             data.put("store", store);

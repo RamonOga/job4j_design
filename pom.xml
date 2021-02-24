@@ -21,6 +21,13 @@
   </properties>
   
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.13.1</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
     <dependency>
       <groupId>org.quartz-scheduler</groupId>
@@ -104,8 +111,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <source>13</source>
-          <target>13</target>
+          <source>14</source>
+          <target>14</target>
           <compilerArgument>-XDignore.symbol.file</compilerArgument>
         </configuration>
       </plugin>
@@ -152,18 +159,16 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
+
   </build>
 
   <modules>
-
     <module>chapter_001</module>
     <module>chapter_002</module>
     <module>chapter_003</module>
     <module>chapter_004</module>
     <module>chapter_005</module>
-      
   </modules>
 
 </project>

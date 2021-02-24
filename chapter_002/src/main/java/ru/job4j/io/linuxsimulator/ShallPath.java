@@ -6,7 +6,8 @@ import java.util.StringJoiner;
 public class ShallPath {
     Stack<String> stack = new Stack<>();
 
-    public void push(String input) { stack.push(input);
+    public void push(String input) {
+        stack.push(input);
     }
 
     public void pop() {

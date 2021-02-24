@@ -10,7 +10,9 @@ public class Shell {
             if (s.equals("..")) {
                 sp.pop();
             } else {
-                sp.push(s);
+                if (!s.equals("")) {
+                    sp.push(s);
+                }
             }
         }
     }
