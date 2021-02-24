@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class SqlRuParse {
     public static void main(String[] args) throws Exception {
+        ParseDate ps = new ParseDate();
         Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers").get();
         Elements rowsHrefs = doc.select(".postslisttopic");
         Elements rowsDates = doc.select(".altCol");
@@ -21,6 +22,7 @@ public class SqlRuParse {
             System.out.println(el.attr("href"));
             System.out.println(el.text());
             System.out.println(date.text());
+            System.out.println(ps.parse(date.text()));
         }
     }
 }
