@@ -7,12 +7,22 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SqlRuParse {
     public static void main(String[] args) throws Exception {
+        for (String html : getHtmls(5)) {
+            getVacancies(html);
+        }
+
+
+        }
+
+    private static void getVacancies(String html) throws Exception {
         ParseDate ps = new ParseDate();
-        Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers").get();
+        Document doc = Jsoup.connect(html).get();
         Elements rowsHrefs = doc.select(".postslisttopic");
         Elements rowsDates = doc.select(".altCol");
         int i = 1;
@@ -23,6 +33,16 @@ public class SqlRuParse {
             System.out.println(el.text());
             System.out.println(date.text());
             System.out.println(ps.parse(date.text()));
+
         }
+    }
+
+    private static List<String> getHtmls(int capacity) {
+        String html = "https://www.sql.ru/forum/job-offers/";
+        List<String> rsl = new ArrayList<>();
+        for (int i = 1; i <= capacity; i++) {
+            rsl.add(html + i);
+        }
+        return rsl;
     }
 }
