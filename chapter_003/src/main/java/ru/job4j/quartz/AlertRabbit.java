@@ -1,6 +1,8 @@
 package ru.job4j.quartz;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import static org.quartz.JobBuilder.*;
@@ -26,7 +28,7 @@ public class AlertRabbit {
                     .withSchedule(times)
                     .build();
             scheduler.scheduleJob(job, trigger);
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             scheduler.shutdown();
             System.out.println(store);
         } catch (Exception se) {
