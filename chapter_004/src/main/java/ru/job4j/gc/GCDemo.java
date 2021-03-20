@@ -15,4 +15,10 @@ public class GCDemo {
         System.out.printf("Total: %d%n", totalMemory );
         System.out.printf("Max: %d%n", maxMemory );
     }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10000; i++) {
+            new Person(i, "N" + i);
+        }
+    }
 }
