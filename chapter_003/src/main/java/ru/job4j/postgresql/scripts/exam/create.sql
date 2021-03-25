@@ -1,11 +1,13 @@
+create database exam_db;
+
 create table users (
     id serial primary key,
-    name varchar(255)
+    name varchar(255) unique
 );
 
 create table meetings (
     id serial primary key,
-    name varchar(255)
+    name varchar(255) unique
 );
 
 create table users_meetings (
@@ -13,4 +15,4 @@ create table users_meetings (
     user_id int references users(id),
     meeting_id int references meetings(id),
     offer bool
-)
+);
