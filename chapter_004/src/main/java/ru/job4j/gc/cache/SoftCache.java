@@ -16,7 +16,12 @@ public class SoftCache {
             refContents = new SoftReference<>(readFile(file));
             cache.put(file, refContents);
         }
-        System.out.println(cache.size());
+        if (refContents.get() == null) {
+            refContents = new SoftReference<>(readFile(file));
+            cache.replace(file, refContents);
+
+        }
+        System.out.println();
         return refContents.get();
     }
 
