@@ -7,7 +7,7 @@ public class Runner {
         SoftCache softCache = new SoftCache();
         String answer = scan();
         while (!answer.equals("exit")) {
-            System.out.println(softCache.getData(answer));
+            System.out.println( softCache.getData(answer));
             answer = scan();
         }
     }
