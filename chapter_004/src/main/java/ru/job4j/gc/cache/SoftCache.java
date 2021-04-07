@@ -21,8 +21,8 @@ public class SoftCache {
             cache.replace(file, refContents);
 
         }
-        System.out.println();
-        return refContents.get();
+        String rsl = refContents.get();
+        return rsl;
     }
 
     private String readFile(String file) {
