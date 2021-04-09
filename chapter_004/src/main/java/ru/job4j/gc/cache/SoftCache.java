@@ -11,17 +11,13 @@ public class SoftCache {
     private static final String directory = "./chapter_004/src/resources/";
 
     public String getData(String file) {
-        SoftReference<String> refContents = cache.get(file);
-        if (refContents == null) {
-            refContents = new SoftReference<>(readFile(file));
-            cache.put(file, refContents);
+        String rsl = "";
+        if (cache.get(file) == null || cache.get(file).get() == null) {
+            rsl = readFile(file);
+            cache.put(file, new SoftReference<>(readFile(file)));
+        } else {
+            rsl = cache.get(file).get();
         }
-        if (refContents.get() == null) {
-            refContents = new SoftReference<>(readFile(file));
-            cache.replace(file, refContents);
-
-        }
-        String rsl = refContents.get();
         return rsl;
     }
 
