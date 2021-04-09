@@ -22,12 +22,17 @@ public class SoftDemo {
         for (int i = 0; i < 100_000_000; i++) {
             objects.add(new SoftReference<Object>(new Object() {
                 String value = String.valueOf(System.currentTimeMillis());
-
                 @Override
                 protected void finalize() throws Throwable {
                     System.out.println("Object removed!");
                 }
             }));
+            System.out.println("Eblis");
+           /* try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
         }
         System.gc();
         int liveObject = 0;
