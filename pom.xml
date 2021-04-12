@@ -108,6 +108,22 @@
       <artifactId>maven-checkstyle-plugin</artifactId>
       <version>3.1.1</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-core</artifactId>
+      <version>1.29</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess -->
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-generator-annprocess</artifactId>
+      <version>1.29</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -123,7 +139,6 @@
           <compilerArgument>-XDignore.symbol.file</compilerArgument>
         </configuration>
       </plugin>
-
 
       <plugin>
         <groupId>org.jacoco</groupId>
