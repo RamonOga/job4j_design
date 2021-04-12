@@ -1,0 +1,74 @@
+Serial
+[0.013s][info][gc,heap,coops] Heap address: 0x0000000082000000, size: 2016 MB, Compressed Oops mode: 32-bit
+[0.014s][info][gc           ] Using Serial
+[5.950s][info][gc,heap,exit ] Heap
+[5.950s][info][gc,heap,exit ]  def new generation   total 38720K, used 8387K [0x0000000082000000, 0x0000000084a00000, 0x00000000ac000000)
+[5.950s][info][gc,heap,exit ]   eden space 34432K,  24% used [0x0000000082000000, 0x0000000082830fd0, 0x00000000841a0000)
+[5.950s][info][gc,heap,exit ]   from space 4288K,   0% used [0x00000000841a0000, 0x00000000841a0000, 0x00000000845d0000)
+[5.950s][info][gc,heap,exit ]   to   space 4288K,   0% used [0x00000000845d0000, 0x00000000845d0000, 0x0000000084a00000)
+[5.950s][info][gc,heap,exit ]  tenured generation   total 86016K, used 0K [0x00000000ac000000, 0x00000000b1400000, 0x0000000100000000)
+[5.950s][info][gc,heap,exit ]    the space 86016K,   0% used [0x00000000ac000000, 0x00000000ac000000, 0x00000000ac000200, 0x00000000b1400000)
+[5.950s][info][gc,heap,exit ]  Metaspace       used 838K, capacity 4557K, committed 4864K, reserved 1056768K
+[5.950s][info][gc,heap,exit ]   class space    used 68K, capacity 409K, committed 512K, reserved 1048576K
+
+Parallel
+[0.031s][info][gc,heap,coops] Heap address: 0x0000000082000000, size: 2016 MB, Compressed Oops mode: 32-bit
+[0.033s][info][gc           ] Using Parallel
+[0.496s][info][gc,heap,exit ] Heap
+[0.496s][info][gc,heap,exit ]  PSYoungGen      total 37888K, used 8827K [0x00000000d6000000, 0x00000000d8a00000, 0x0000000100000000)
+[0.496s][info][gc,heap,exit ]   eden space 32768K, 26% used [0x00000000d6000000,0x00000000d689ed20,0x00000000d8000000)
+[0.496s][info][gc,heap,exit ]   from space 5120K, 0% used [0x00000000d8500000,0x00000000d8500000,0x00000000d8a00000)
+[0.496s][info][gc,heap,exit ]   to   space 5120K, 0% used [0x00000000d8000000,0x00000000d8000000,0x00000000d8500000)
+[0.496s][info][gc,heap,exit ]  ParOldGen       total 86016K, used 0K [0x0000000082000000, 0x0000000087400000, 0x00000000d6000000)
+[0.496s][info][gc,heap,exit ]   object space 86016K, 0% used [0x0000000082000000,0x0000000082000000,0x0000000087400000)
+[0.496s][info][gc,heap,exit ]  Metaspace       used 1125K, capacity 4563K, committed 4864K, reserved 1056768K
+[0.496s][info][gc,heap,exit ]   class space    used 101K, capacity 411K, committed 512K, reserved 1048576K
+
+G1
+[0.008s][info][gc,heap] Heap region size: 1M
+[0.009s][info][gc,heap,coops] Heap address: 0x0000000082000000, size: 2016 MB, Compressed Oops mode: 32-bit
+[0.011s][info][gc           ] Using G1
+[0.037s][info][gc           ] Periodic GC disabled
+[0.594s][info][gc,start     ] GC(0) Pause Young (Normal) (G1 Evacuation Pause)
+[0.594s][info][gc,task      ] GC(0) Using 2 workers of 2 for evacuation
+[0.659s][info][gc,phases    ] GC(0)   Pre Evacuate Collection Set: 0.0ms
+[0.659s][info][gc,phases    ] GC(0)   Merge Heap Roots: 0.0ms
+[0.659s][info][gc,phases    ] GC(0)   Evacuate Collection Set: 64.7ms
+[0.659s][info][gc,phases    ] GC(0)   Post Evacuate Collection Set: 0.2ms
+[0.659s][info][gc,phases    ] GC(0)   Other: 0.2ms
+[0.659s][info][gc,heap      ] GC(0) Eden regions: 6->0(5)
+[0.659s][info][gc,heap      ] GC(0) Survivor regions: 0->1(1)
+[0.659s][info][gc,heap      ] GC(0) Old regions: 0->3
+[0.659s][info][gc,heap      ] GC(0) Archive regions: 0->0
+[0.659s][info][gc,heap      ] GC(0) Humongous regions: 0->0
+[0.659s][info][gc,metaspace ] GC(0) Metaspace: 1124K(4864K)->1124K(4864K) NonClass: 1022K(4352K)->1022K(4352K) Class: 101K(512K)->101K(512K)
+[0.659s][info][gc           ] GC(0) Pause Young (Normal) (G1 Evacuation Pause) 6M->3M(126M) 65.298ms
+[0.659s][info][gc,cpu       ] GC(0) User=0.00s Sys=0.00s Real=0.07s
+[0.678s][info][gc,heap,exit ] Heap
+[0.678s][info][gc,heap,exit ]  garbage-first heap   total 129024K, used 3856K [0x0000000082000000, 0x0000000100000000)
+[0.678s][info][gc,heap,exit ]   region size 1024K, 2 young (2048K), 1 survivors (1024K)
+[0.678s][info][gc,heap,exit ]  Metaspace       used 1126K, capacity 4563K, committed 4864K, reserved 1056768K
+[0.678s][info][gc,heap,exit ]   class space    used 101K, capacity 411K, committed 512K, reserved 1048576K
+
+ZGC
+[0.056s][info][gc,init] Initializing The Z Garbage Collector
+[0.056s][info][gc,init] Version: 14.0.2+12-46 (release)
+[0.056s][info][gc,init] NUMA Support: Disabled
+[0.056s][info][gc,init] CPUs: 2 total, 2 available
+[0.057s][info][gc,init] Memory: 8057M
+[0.057s][info][gc,init] Large Page Support: Disabled
+[0.057s][info][gc,init] Medium Page Size: 32M
+[0.057s][info][gc,init] Workers: 2 parallel, 1 concurrent
+[0.087s][info][gc,init] Address Space Type: Contiguous/Unrestricted/Complete
+[0.087s][info][gc,init] Address Space Size: 32256M x 3 = 96768M
+[0.087s][info][gc,init] Min Capacity: 8M
+[0.087s][info][gc,init] Initial Capacity: 126M
+[0.087s][info][gc,init] Max Capacity: 2016M
+[0.087s][info][gc,init] Max Reserve: 36M
+[0.087s][info][gc,init] Pre-touch: Disabled
+[0.092s][info][gc,init] Uncommit: Enabled, Delay: 300s
+[0.105s][info][gc,init] Runtime Workers: 2 parallel
+[0.169s][info][gc     ] Using The Z Garbage Collector
+[1.211s][info][gc,heap,exit] Heap
+[1.211s][info][gc,heap,exit]  ZHeap           used 42M, capacity 126M, max capacity 2016M
+[1.211s][info][gc,heap,exit]  Metaspace       used 7399K, capacity 7525K, committed 7680K, reserved 8192K
