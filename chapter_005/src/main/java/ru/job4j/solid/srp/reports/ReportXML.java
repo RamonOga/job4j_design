@@ -22,7 +22,7 @@ public class ReportXML implements Report {
                 Marshaller marshaller = context.createMarshaller();
                 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
                 marshaller.marshal(employee, sw);
-                rsl.append(sw.getBuffer().toString());
+                rsl.append(sw.toString());
             } catch (Exception e) {
                 e.fillInStackTrace();
             }

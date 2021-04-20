@@ -1,5 +1,6 @@
 package ru.job4j.solid.srp.reports;
 
+import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -100,53 +101,60 @@ public class ReportEngineTest {
 
     @Test
     public void whenXMLGenerated() {
-
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employee employee1 = new Employee("Petr", now, now, 100);
-        store.add(employee1);
+        Employee employee = new Employee("Petr", now, now, 100);
+        store.add(employee);
         Report engine = new ReportXML(store);
         String rsl = engine.generate(em -> true);
         String expect = new StringBuilder()
-                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-                .append(System.lineSeparator())
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
                 .append("<Employee name=\"Petr\" hired=\"")
-                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee1.getHired().getTime()))
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
                 .append("\" fired=\"")
-                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee1.getFired().getTime()))
-                .append("\" salary=\"100.0\"/>")
-                .append(System.lineSeparator())
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getFired().getTime()))
+                .append("\" salary=\"100.0\"/>\n")
                 .toString();
-
-        char[] expectChars = expect.toCharArray();
-        char[] rslChars = rsl.toCharArray();
-        System.out.println("======");
-        System.out.println(expect);
-        System.out.println("======");
-        System.out.println(rsl);
-        System.out.println("======");
-
-        for (int i = 0; i != rslChars.length; i++) {
-            if (rslChars[i] != expectChars[i]) {
-                System.out.println("==================================");
-                System.out.println("rsl=>" + (int) rslChars[i] + "<=rsl");
-                System.out.println("exp=>" + (int) expectChars[i] + "<=exp");
-                System.out.println("==================================");
-
-            }
-        }
-
-
-        //assertEquals(expect, rsl);
+        assertEquals(expect, rsl);
     }
 
     @Test
     public void whenJSONGenerated() {
-        //2021-04-20T15:06:05.963+03:00
-        Calendar calendar = Calendar.getInstance();
-        System.out.println(calendar);
-        System.out.println(calendar);
-
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss.SSSXXX").format(calendar.getTime()));
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee employee = new Employee("Petr", now, now, 100);
+        store.add(employee);
+        Report engine = new ReportJSON(store);
+        String rsl = engine.generate(em -> true);
+        String expect = new StringBuilder()
+                .append("{\"fired\":\"")
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
+                .append("\",\"name\":\"Petr\",\"hired\":\"")
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
+                .append("\",\"salary\":100}")
+                .append(System.lineSeparator())
+                .toString();
+        assertEquals(expect, rsl);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+    char[] chRsl = rsl.toCharArray();
+    char[] chExp = expect.toCharArray();
+
+        for (int i = 0; i != chExp.length; i++) {
+                if (chExp[i] != chRsl[i]) {
+                System.out.println("ex=>" + chExp[i] + "<=ex " + i);
+                System.out.println("rsl=>" + chRsl[i] + "<=rsl " + i);
+                }
+                }*/
