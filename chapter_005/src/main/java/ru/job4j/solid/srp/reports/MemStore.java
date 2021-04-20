@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MemStore implements Store, SalarySort {
+public class MemStore implements Store{
 
     private final List<Employee> employees = new ArrayList<>();
 
@@ -16,11 +16,5 @@ public class MemStore implements Store, SalarySort {
     @Override
     public List<Employee> findBy(Predicate<Employee> filter) {
         return employees.stream().filter(filter).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Employee> salaryEmpSort() {
-        employees.sort(new SalaryComparator());
-        return employees;
     }
 }

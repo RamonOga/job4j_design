@@ -3,6 +3,8 @@ package ru.job4j.solid.srp.reports;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+
+import net.sf.saxon.expr.Component;
 import org.junit.Test;
 import java.util.Calendar;
 
@@ -77,8 +79,8 @@ public class ReportEngineTest {
         Employee worker2 = new Employee("Ivan", now, now, 100);
         store.add(worker1);
         store.add(worker2);
-        store.salaryEmpSort();
         Report engine = new ReportHR(store);
+        String rsl = engine.generate(em -> true);
         String expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())
@@ -89,6 +91,7 @@ public class ReportEngineTest {
                 .append(worker1.getSalary()).append(";")
                 .append(System.lineSeparator())
                 .toString();
-        assertEquals(expect,engine.generate(em -> true));
+
+        assertEquals(expect, rsl);
     }
 }
