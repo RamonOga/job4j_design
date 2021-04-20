@@ -7,9 +7,4 @@ public class Dough extends Product {
     public Dough(int capacity) {
         this.capacity = capacity;
     }
-
-    @Override
-    public void addInPizza(int capacity) {
-        this.capacity -= capacity;
-    }
 }
