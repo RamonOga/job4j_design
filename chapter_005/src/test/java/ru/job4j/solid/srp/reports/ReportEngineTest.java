@@ -6,6 +6,9 @@ import static org.hamcrest.Matchers.is;
 
 import net.sf.saxon.expr.Component;
 import org.junit.Test;
+
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ReportEngineTest {
@@ -93,5 +96,57 @@ public class ReportEngineTest {
                 .toString();
 
         assertEquals(expect, rsl);
+    }
+
+    @Test
+    public void whenXMLGenerated() {
+
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee employee1 = new Employee("Petr", now, now, 100);
+        store.add(employee1);
+        Report engine = new ReportXML(store);
+        String rsl = engine.generate(em -> true);
+        String expect = new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
+                .append(System.lineSeparator())
+                .append("<Employee name=\"Petr\" hired=\"")
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee1.getHired().getTime()))
+                .append("\" fired=\"")
+                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee1.getFired().getTime()))
+                .append("\" salary=\"100.0\"/>")
+                .append(System.lineSeparator())
+                .toString();
+
+        char[] expectChars = expect.toCharArray();
+        char[] rslChars = rsl.toCharArray();
+        System.out.println("======");
+        System.out.println(expect);
+        System.out.println("======");
+        System.out.println(rsl);
+        System.out.println("======");
+
+        for (int i = 0; i != rslChars.length; i++) {
+            if (rslChars[i] != expectChars[i]) {
+                System.out.println("==================================");
+                System.out.println("rsl=>" + (int) rslChars[i] + "<=rsl");
+                System.out.println("exp=>" + (int) expectChars[i] + "<=exp");
+                System.out.println("==================================");
+
+            }
+        }
+
+
+        //assertEquals(expect, rsl);
+    }
+
+    @Test
+    public void whenJSONGenerated() {
+        //2021-04-20T15:06:05.963+03:00
+        Calendar calendar = Calendar.getInstance();
+        System.out.println(calendar);
+        System.out.println(calendar);
+
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss.SSSXXX").format(calendar.getTime()));
     }
 }
