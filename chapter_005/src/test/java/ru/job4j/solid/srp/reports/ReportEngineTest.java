@@ -8,6 +8,8 @@ import static org.hamcrest.Matchers.is;
 import net.sf.saxon.expr.Component;
 import org.junit.Test;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -109,11 +111,22 @@ public class ReportEngineTest {
         String rsl = engine.generate(em -> true);
         String expect = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
-                .append("<Employee name=\"Petr\" hired=\"")
+                .append("<Employees>\n")
+                .append("    <employees>\n")
+                .append("        <name>")
+                .append(employee.getName())
+                .append("</name>\n")
+                .append("        <hired>")
                 .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
-                .append("\" fired=\"")
+                .append("</hired>\n")
+                .append("        <fired>")
                 .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getFired().getTime()))
-                .append("\" salary=\"100.0\"/>\n")
+                .append("</fired>\n")
+                .append("        <salary>")
+                .append(employee.getSalary())
+                .append("</salary>\n")
+                .append("    </employees>\n")
+                .append("</Employees>\n")
                 .toString();
         assertEquals(expect, rsl);
     }
@@ -134,7 +147,17 @@ public class ReportEngineTest {
                 .append("\",\"salary\":100}")
                 .append(System.lineSeparator())
                 .toString();
+        System.out.println(rsl);
         assertEquals(expect, rsl);
+    }
+
+    @Test
+    public void test() {
+        try {
+            JAXBContext context = JAXBContext.newInstance();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 }
 

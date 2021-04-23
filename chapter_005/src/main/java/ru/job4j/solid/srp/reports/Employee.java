@@ -1,22 +1,19 @@
 package ru.job4j.solid.srp.reports;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
 
-@XmlRootElement(name = "Employee")
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
-    @XmlAttribute
+    @XmlElement
     private String name;
-    @XmlAttribute
+    @XmlElement
     private Calendar hired;
-    @XmlAttribute
+    @XmlElement
     private Calendar fired;
-    @XmlAttribute
+    @XmlElement
     private double salary;
 
     public Employee() {}

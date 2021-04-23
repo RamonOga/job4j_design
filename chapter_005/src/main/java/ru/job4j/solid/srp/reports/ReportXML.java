@@ -16,17 +16,17 @@ public class ReportXML implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder rsl = new StringBuilder();
-        for (Employee employee : store.findBy(filter)) {
+        Employees employees = new Employees(store.findBy(filter));
             try(StringWriter sw = new StringWriter()) {
-                JAXBContext context = JAXBContext.newInstance(Employee.class);
+                JAXBContext context = JAXBContext.newInstance(Employees.class);
                 Marshaller marshaller = context.createMarshaller();
                 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                marshaller.marshal(employee, sw);
+                marshaller.marshal(employees, sw);
                 rsl.append(sw.toString());
             } catch (Exception e) {
-                e.fillInStackTrace();
+                System.out.println(e.fillInStackTrace());
             }
-        }
+
         return rsl.toString();
     }
 }
