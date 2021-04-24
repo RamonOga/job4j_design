@@ -2,6 +2,7 @@ package ru.job4j.solid.srp.reports;
 
 import javax.xml.bind.annotation.*;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -33,16 +34,16 @@ public class Employee {
         this.name = name;
     }
 
-    public Calendar getHired() {
-        return hired;
+    public Date getHired() {
+        return hired.getTime();
     }
 
     public void setHired(Calendar hired) {
         this.hired = hired;
     }
 
-    public Calendar getFired() {
-        return fired;
+    public Date getFired() {
+        return fired.getTime();
     }
 
     public void setFired(Calendar fired) {

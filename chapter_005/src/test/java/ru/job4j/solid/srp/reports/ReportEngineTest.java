@@ -140,14 +140,13 @@ public class ReportEngineTest {
         Report engine = new ReportJSON(store);
         String rsl = engine.generate(em -> true);
         String expect = new StringBuilder()
-                .append("{\"fired\":\"")
-                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
+                .append("[{\"fired\":\"")
+                .append(employee.getHired())
                 .append("\",\"name\":\"Petr\",\"hired\":\"")
-                .append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(employee.getHired().getTime()))
-                .append("\",\"salary\":100}")
-                .append(System.lineSeparator())
+                .append(employee.getHired())
+                .append("\",\"salary\":100}]")
+                //.append(System.lineSeparator())
                 .toString();
-        System.out.println(rsl);
         assertEquals(expect, rsl);
     }
 
