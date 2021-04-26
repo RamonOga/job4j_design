@@ -1,9 +1,37 @@
 package ru.job4j.solid.lsp.productStorage;
 
-public class Trash  {
-    FoodStorage foodStorage;
+import ru.job4j.solid.lsp.productStorage.foods.Food;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.List;
+
+public class Trash implements Storage {
+    List<Food> foodStorage;
 
     public Trash() {
-        this.foodStorage = new FoodStorage();
+        this.foodStorage = new ArrayList<>();
+    }
+
+    @Override
+    public boolean add(Food food) {
+        if (food == null) {
+            throw new IllegalArgumentException("Food cannot be null!");
+        }
+        boolean rsl = accept(food);
+        if (rsl) {
+            foodStorage.add(food);
+        }
+        return rsl;
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        boolean rsl = food.getExpiryDate().getTime() < Calendar.getInstance().getTime().getTime();
+        if (rsl) {
+            foodStorage.add(food);
+        }
+        return false;
     }
 }

@@ -1,9 +1,33 @@
 package ru.job4j.solid.lsp.productStorage;
 
-public class Warehouse {
-    FoodStorage foodStorage;
+import ru.job4j.solid.lsp.productStorage.foods.Food;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Warehouse implements Storage {
+    List<Food> foodStorage;
+    private final int limit = 25;
 
     public Warehouse() {
-        this.foodStorage = new FoodStorage();
+        this.foodStorage = new ArrayList<>();
+    }
+
+    @Override
+    public boolean add(Food food) {
+        if (food == null) {
+            throw new IllegalArgumentException("Food cannot be null!");
+        }
+        boolean rsl = accept(food);
+        if (rsl) {
+            foodStorage.add(food);
+        }
+        return rsl;
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        int percents = getPercents(food);
+        return percents <= limit && percents > 0;
     }
 }

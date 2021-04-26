@@ -4,46 +4,34 @@ import ru.job4j.solid.lsp.productStorage.foods.Food;
 import java.util.List;
 
 public class ControlQuality {
-    private Shop shop;
-    private Trash trash;
-    private Warehouse wh;
+    private List<Storage> storageList;
 
-    public ControlQuality(Shop shop,Warehouse wh, Trash trash) {
-        if (shop == null || trash == null || wh == null) {
+    public ControlQuality(List<Storage> list) {
+        if (list == null) {
             throw new IllegalArgumentException("One of the arguments equal null");
         }
-        this.shop = shop;
-        this.trash = trash;
-        this.wh = wh;
+        storageList = list;
     }
 
-    public Shop getShop() {
-        return shop;
+    public List<Storage> getStorageList() {
+        return storageList;
     }
 
-    public Trash getTrash() {
-        return trash;
+    public void addFoodList(List<Food> foodList) {
+        for(Food food : foodList) {
+            addFood(food);
+        }
     }
 
-    public Warehouse getWh() {
-        return wh;
-    }
-
-    public void redistribute(List<Food> foodList) {
-        for (Food food : foodList) {
-            if (food.getExpiryDate().getTime() - food.getCreateDate().getTime() > 300000) {
-                shop.foodStorage.add(food);
-            }
-            if (food.getExpiryDate().getTime() - food.getCreateDate().getTime() > 600000) {
-                wh.foodStorage.add(food);
-            }
-            if (food.getExpiryDate().getTime() - food.getCreateDate().getTime() > 900000) {
-                food.setDiscount(true);
-                trash.foodStorage.add(food);
-            }
-            if (food.getExpiryDate().getTime() - food.getCreateDate().getTime() > 1200000) {
-                trash.foodStorage.add(food);
+    public boolean addFood(Food food) {
+        boolean rsl = false;
+        for (Storage storage : storageList) {
+            rsl = storage.accept(food);
+            if (rsl) {
+                storage.add(food);
+                break;
             }
         }
+        return rsl;
     }
 }
