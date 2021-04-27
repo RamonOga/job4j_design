@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class SortArrayByParityII {
 
     public static void main(String[] args) {
-        int[] ar = new int[]{4,2,5,7};
+        int[] ar = new int[]{4, 2, 5, 7};
         System.out.println(Arrays.toString(sortArrayByParityII(ar)));
     }
 
