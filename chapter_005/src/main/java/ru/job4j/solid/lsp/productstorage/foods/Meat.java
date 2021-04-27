@@ -1,4 +1,4 @@
-package ru.job4j.solid.lsp.productStorage.foods;
+package ru.job4j.solid.lsp.productstorage.foods;
 
 import java.util.Date;
 

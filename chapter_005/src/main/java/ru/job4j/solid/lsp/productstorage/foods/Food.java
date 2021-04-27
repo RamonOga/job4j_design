@@ -1,4 +1,4 @@
-package ru.job4j.solid.lsp.productStorage.foods;
+package ru.job4j.solid.lsp.productstorage.foods;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ public class Food {
     private int price;
     private boolean discount;
 
-    public Food(String name, Date expiryDate, Date createDate, int price) {
+    public Food(String name, Date createDate, Date expiryDate, int price) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.createDate = createDate;

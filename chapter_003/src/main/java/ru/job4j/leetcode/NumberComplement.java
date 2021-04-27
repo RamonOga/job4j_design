@@ -12,7 +12,6 @@ public class NumberComplement {
         System.out.println(findComplement(256));
     }
 
-
     public static int findComplement(int num) {
         StringBuilder sb = new StringBuilder();
         int rsl = 0;

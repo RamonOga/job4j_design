@@ -1,4 +1,4 @@
-package ru.job4j.solid.lsp.exampleOne;
+package ru.job4j.solid.lsp.exampleone;
 
 import java.util.Calendar;
 

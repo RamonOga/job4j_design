@@ -1,4 +1,4 @@
-package ru.job4j.solid.lsp.exampleTwo;
+package ru.job4j.solid.lsp.exampletwo;
 
 public class Task {
     private int complexity;

@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Cinema3D implements Cinema{
+public class Cinema3D implements Cinema {
     @Override
     public List<Session> find(Predicate<Session> filter) {
         return null;

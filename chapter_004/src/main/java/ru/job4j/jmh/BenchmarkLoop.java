@@ -1,8 +1,6 @@
 package ru.job4j.jmh;
 
 
-import java.util.*;
-
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -24,9 +22,9 @@ import java.util.concurrent.TimeUnit;
 public class BenchmarkLoop {
 
     @Param({"10000000"})
-    private int N;
+    private int n;
 
-    private List<String> DATA_FOR_TESTING;
+    private List<String> dataForTesting;
 
     public static void main(String[] args) throws RunnerException {
 
@@ -40,13 +38,13 @@ public class BenchmarkLoop {
 
     @Setup
     public void setup() {
-        DATA_FOR_TESTING = createData();
+        dataForTesting = createData();
     }
 
     @Benchmark
     public void loopFor(Blackhole bh) {
-        for (int i = 0; i < DATA_FOR_TESTING.size(); i++) {
-            String s = DATA_FOR_TESTING.get(i); //take out n consume, fair with foreach
+        for (int i = 0; i < dataForTesting.size(); i++) {
+            String s = dataForTesting.get(i); //take out n consume, fair with foreach
             bh.consume(s);
         }
     }
@@ -54,8 +52,8 @@ public class BenchmarkLoop {
     @Benchmark
     public void loopWhile(Blackhole bh) {
         int i = 0;
-        while (i < DATA_FOR_TESTING.size()) {
-            String s = DATA_FOR_TESTING.get(i);
+        while (i < dataForTesting.size()) {
+            String s = dataForTesting.get(i);
             bh.consume(s);
             i++;
         }
@@ -63,14 +61,14 @@ public class BenchmarkLoop {
 
     @Benchmark
     public void loopForEach(Blackhole bh) {
-        for (String s : DATA_FOR_TESTING) {
+        for (String s : dataForTesting) {
             bh.consume(s);
         }
     }
 
     @Benchmark
     public void loopIterator(Blackhole bh) {
-        Iterator<String> iterator = DATA_FOR_TESTING.iterator();
+        Iterator<String> iterator = dataForTesting.iterator();
         while (iterator.hasNext()) {
             String s = iterator.next();
             bh.consume(s);
@@ -79,7 +77,7 @@ public class BenchmarkLoop {
 
     private List<String> createData() {
         List<String> data = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             data.add("Number : " + i);
         }
         return data;

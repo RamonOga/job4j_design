@@ -19,7 +19,7 @@ public class App {
         int low = 0;
         int high = arr.length - 1;
         int middle = low + high / 2;
-        while(true) {
+        while (true) {
             if (arr[middle] < x) {
                 low = middle;
                 middle = (high + low) / 2;

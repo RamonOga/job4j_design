@@ -1,4 +1,4 @@
-package ru.job4j.solid.ocp.exampleTwo;
+package ru.job4j.solid.ocp.exampletwo;
 
 public class UserData {
     private int id;

@@ -5,9 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
+
     @XmlElement
     private String name;
     @XmlElement
@@ -17,7 +17,8 @@ public class Employee {
     @XmlElement
     private double salary;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(String name, Calendar hired, Calendar fired, double salary) {
         this.name = name;
@@ -60,8 +61,12 @@ public class Employee {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Employee employee = (Employee) o;
         return Objects.equals(name, employee.name);
     }

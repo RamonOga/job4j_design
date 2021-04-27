@@ -1,6 +1,4 @@
-package ru.job4j.solid.srp.exampleTwo;
-
-import org.apache.commons.collections.map.HashedMap;
+package ru.job4j.solid.srp.exampletwo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +12,7 @@ public class Shop implements IShop {
 
     public Shop() {
         this.itemList = new ArrayList<>();
-        this.buysList = new HashMap <>();
+        this.buysList = new HashMap<>();
     }
 
     @Override

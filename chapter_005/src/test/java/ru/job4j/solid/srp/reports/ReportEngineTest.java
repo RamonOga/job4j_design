@@ -1,16 +1,10 @@
 package ru.job4j.solid.srp.reports;
 
-import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import net.sf.saxon.expr.Component;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -32,7 +26,7 @@ public class ReportEngineTest {
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator())
                 .toString();
-        assertEquals(expect,engine.generate(em -> true));
+        assertEquals(expect, engine.generate(em -> true));
     }
 
     @Test
@@ -55,7 +49,7 @@ public class ReportEngineTest {
                 .append("</body>")
                 .append(System.lineSeparator())
                 .toString();
-        assertEquals(expect,engine.generate(em -> true));
+        assertEquals(expect, engine.generate(em -> true));
     }
 
     @Test
@@ -71,10 +65,10 @@ public class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary()/70).append(";")
+                .append(worker.getSalary() / 70).append(";")
                 .append(System.lineSeparator())
                 .toString();
-        assertEquals(expect,engine.generate(em -> true));
+        assertEquals(expect, engine.generate(em -> true));
     }
 
     @Test

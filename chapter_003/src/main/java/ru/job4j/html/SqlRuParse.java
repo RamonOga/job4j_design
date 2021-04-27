@@ -16,9 +16,7 @@ public class SqlRuParse {
         for (String html : getHtmls(5)) {
             getVacancies(html);
         }
-
-
-        }
+    }
 
     private static void getVacancies(String html) throws Exception {
         ParseDate ps = new ParseDate();

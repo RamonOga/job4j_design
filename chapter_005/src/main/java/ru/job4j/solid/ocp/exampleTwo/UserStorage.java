@@ -1,4 +1,4 @@
-package ru.job4j.solid.ocp.exampleTwo;
+package ru.job4j.solid.ocp.exampletwo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,6 @@ public class UserStorage {
 
     public void saveByAWSCloud() {
         // load by cloud code
-        System.out.println("%s, your data save to AWS cloud".formatted(owner));
+        System.out.println(owner + ", your data save to AWS cloud");
     }
 }

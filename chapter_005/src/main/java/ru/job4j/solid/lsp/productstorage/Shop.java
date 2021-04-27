@@ -1,16 +1,16 @@
-package ru.job4j.solid.lsp.productStorage;
+package ru.job4j.solid.lsp.productstorage;
 
-import ru.job4j.solid.lsp.productStorage.foods.Food;
+import ru.job4j.solid.lsp.productstorage.foods.Food;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.List;
 
-public class Trash implements Storage {
+public class Shop implements Storage {
     List<Food> foodStorage;
+    private final int upLimit = 75;
+    private final int downLimit = 25;
 
-    public Trash() {
+    public Shop() {
         this.foodStorage = new ArrayList<>();
     }
 
@@ -28,10 +28,14 @@ public class Trash implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        boolean rsl = food.getExpiryDate().getTime() < Calendar.getInstance().getTime().getTime();
-        if (rsl) {
-            foodStorage.add(food);
+        int percents = getPercentsFromBirthToDeath(food);
+        if (percents <= upLimit && percents >= downLimit) {
+            return true;
+        } else if (percents >= upLimit && percents < 100) {
+            food.setDiscount(true);
+            return true;
         }
         return false;
     }
+
 }

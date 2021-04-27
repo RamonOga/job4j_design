@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.exampleOne;
+package ru.job4j.solid.srp.exampleone;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,12 +14,12 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public void loadDB() {
-        try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/test", "login", "pass");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/test", "login", "pass");
             PreparedStatement pStatement = connection.prepareStatement("select * from userttable");
                 ) {
             ResultSet rs = pStatement.executeQuery();
             while (rs.next()) {
-                //...
+                System.out.println("do something");
             }
         } catch (Exception e) {
             e.fillInStackTrace();
@@ -28,7 +28,7 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public void add(User user) {
-        if(user == null) {
+        if (user == null) {
             throw new IllegalArgumentException("User must not be null");
         }
         list.add(user);
@@ -37,7 +37,7 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public void delete(User user) {
-        if(user == null) {
+        if (user == null) {
             throw new IllegalArgumentException("User must not be null");
         }
         list.remove(user);

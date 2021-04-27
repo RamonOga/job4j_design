@@ -10,7 +10,7 @@ public class Runner {
 
     public static int reverse(int x) {
         int rsl = 0;
-        while (x !=0) {
+        while (x != 0) {
             int pop = x % 10;
             x /= 10;
             if (rsl > Integer.MAX_VALUE / 10 || rsl == Integer.MAX_VALUE / 10 && pop > 7) {

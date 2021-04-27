@@ -39,6 +39,7 @@ public class CinemaTest {
         cinema.add(session);
         assertEquals(session, cinema.find(a -> true).get(0));
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void buyTwoTicketsOnOnePlace() {
         Account account = new AccountCinema();

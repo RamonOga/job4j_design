@@ -22,7 +22,7 @@ public class SocketTest {
         try (ServerSocket ss = new ServerSocket(8081)) {
             while (!ss.isClosed()) {
                 Socket socket = ss.accept();
-                try(OutputStream bos = socket.getOutputStream()) {
+                try (OutputStream bos = socket.getOutputStream()) {
                     bos.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     list.forEach(a -> {
                         try {
@@ -34,7 +34,7 @@ public class SocketTest {
 
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
     }
@@ -71,6 +71,7 @@ public class SocketTest {
         }
         return conn;
     }
+
     public static void main(String[] args) {
         SocketTest st = new SocketTest();
         st.startSocket(st.getPostList());

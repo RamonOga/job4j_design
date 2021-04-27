@@ -1,4 +1,4 @@
-package ru.job4j.solid.ocp.exampleThree;
+package ru.job4j.solid.ocp.examplethree;
 
 import java.util.ArrayList;
 import java.util.List;

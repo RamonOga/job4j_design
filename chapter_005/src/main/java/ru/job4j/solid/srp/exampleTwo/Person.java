@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.exampleTwo;
+package ru.job4j.solid.srp.exampletwo;
 
 import java.util.UUID;
 
@@ -15,11 +15,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return "User{" +
-                "uuid=" + uuid +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+        return "User{"
+                + "uuid=" + uuid
+                + ", age=" + age
+                + ", name='" + name + '\''
+                + '}';
     }
 
     public UUID getUuid() {

@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 
 public class SoftCache {
     Map<String, SoftReference<String>> cache = new HashMap<>();
-    private static final String directory = "./chapter_004/src/resources/";
+    private static final String DIRECTORY = "./chapter_004/src/resources/";
 
     public String getData(String file) {
         String rsl = null;
@@ -24,7 +24,7 @@ public class SoftCache {
 
     private String readFile(String file) {
         StringJoiner sj = null;
-        try(BufferedReader bis = new BufferedReader(new FileReader(directory + file))) {
+        try (BufferedReader bis = new BufferedReader(new FileReader(DIRECTORY + file))) {
             sj = new StringJoiner(System.lineSeparator());
                 bis.lines().forEach(sj::add);
         } catch (IOException ioe) {

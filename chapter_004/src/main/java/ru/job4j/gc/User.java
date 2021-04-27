@@ -8,6 +8,7 @@ public class User {
         this.id = age;
         this.name = name;
     }
+
     public User() {
     }
 

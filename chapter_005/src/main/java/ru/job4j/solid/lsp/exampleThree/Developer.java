@@ -1,4 +1,4 @@
-package ru.job4j.solid.lsp.exampleThree;
+package ru.job4j.solid.lsp.examplethree;
 
 public class Developer {
     int skill;

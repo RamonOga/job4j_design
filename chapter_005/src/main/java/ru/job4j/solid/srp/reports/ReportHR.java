@@ -3,7 +3,7 @@ package ru.job4j.solid.srp.reports;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ReportHR implements Report{
+public class ReportHR implements Report {
     Store store;
 
     public ReportHR(Store store) {
@@ -18,7 +18,7 @@ public class ReportHR implements Report{
         StringBuilder text = new StringBuilder();
         text.append("Name; Salary;")
                 .append(System.lineSeparator());
-        for (Employee employee : employeeList ) {
+        for (Employee employee : employeeList) {
             text.append(employee.getName()).append(";")
                     .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());

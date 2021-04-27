@@ -13,7 +13,6 @@ public class RepeatingInString {
         System.out.println(method1("AAABBCCCA"));
     }
 
-
     public static String method1(String input) {
         StringBuilder sb = new StringBuilder();
         Map<String, Integer> map = new HashMap<>();

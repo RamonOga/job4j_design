@@ -13,7 +13,8 @@ public class Employees {
         init(list);
     }
 
-    public Employees() {}
+    public Employees() {
+    }
 
     private void init(List<Employee> list) {
         if (list == null) {
@@ -21,7 +22,7 @@ public class Employees {
         }
         employees = new Employee[list.size()];
 
-        for(int i = 0; i != list.size(); i++) {
+        for (int i = 0; i != list.size(); i++) {
             employees[i] = list.get(i);
         }
     }

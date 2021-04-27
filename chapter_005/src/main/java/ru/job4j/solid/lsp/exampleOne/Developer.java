@@ -1,6 +1,4 @@
-package ru.job4j.solid.lsp.exampleOne;
-
-import java.util.Calendar;
+package ru.job4j.solid.lsp.exampleone;
 
 public class Developer {
     private int salary;

@@ -1,4 +1,4 @@
-package ru.job4j.solid.ocp.exampleOne;
+package ru.job4j.solid.ocp.exampleone;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.exampleTwo;
+package ru.job4j.solid.srp.exampletwo;
 
 public class Item implements IItem {
     int id;

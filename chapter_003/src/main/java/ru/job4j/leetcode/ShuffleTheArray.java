@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ShuffleTheArray {
 
     public static void main(String[] args) {
-        int [] array = Helper.createSortedIntArray(10);
+        int[] array = Helper.createSortedIntArray(10);
         System.out.println(Arrays.toString(shuffle(array, 5)));
     }
 

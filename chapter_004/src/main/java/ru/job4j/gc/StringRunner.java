@@ -6,6 +6,4 @@ public class StringRunner {
      s = s.replace(".", "[.]");
         System.out.println(s);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package ru.job4j.solid.ocp.exampleThree;
+package ru.job4j.solid.ocp.examplethree;
 
 public abstract class Product {
     private int capacity;

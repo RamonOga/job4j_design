@@ -1,7 +1,7 @@
-package ru.job4j.solid.srp.exampleThree;
+package ru.job4j.solid.srp.examplethree;
 
+public class TempSensor implements ITempSensor {
 
-public class TempSensor implements ITempSensor{
     int temperature;
     long time;
 

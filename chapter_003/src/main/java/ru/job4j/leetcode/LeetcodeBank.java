@@ -31,7 +31,7 @@ public class LeetcodeBank {
         int restOfDays = n % 7;
 
         for (int i = 0; i != weeks; i++) {
-            rsl += moneyPerWeek + ( 7 * i);
+            rsl += moneyPerWeek + (7 * i);
         }
         for (int i = 0; i != restOfDays; i++) {
             weeks++;

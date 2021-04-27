@@ -17,7 +17,7 @@ public class ReportXML implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder rsl = new StringBuilder();
         Employees employees = new Employees(store.findBy(filter));
-            try(StringWriter sw = new StringWriter()) {
+            try (StringWriter sw = new StringWriter()) {
                 JAXBContext context = JAXBContext.newInstance(Employees.class);
                 Marshaller marshaller = context.createMarshaller();
                 marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

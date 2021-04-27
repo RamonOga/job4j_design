@@ -1,6 +1,6 @@
-package ru.job4j.solid.lsp.productStorage;
+package ru.job4j.solid.lsp.productstorage;
 
-import ru.job4j.solid.lsp.productStorage.foods.Food;
+import ru.job4j.solid.lsp.productstorage.foods.Food;
 import java.util.List;
 
 public class ControlQuality {
@@ -18,7 +18,7 @@ public class ControlQuality {
     }
 
     public void addFoodList(List<Food> foodList) {
-        for(Food food : foodList) {
+        for (Food food : foodList) {
             addFood(food);
         }
     }

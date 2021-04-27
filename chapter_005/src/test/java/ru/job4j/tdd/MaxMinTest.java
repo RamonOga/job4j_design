@@ -20,13 +20,10 @@ public class MaxMinTest {
         Comparator<Integer> comparator = new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return Integer.compare(o1,o2);
+                return Integer.compare(o1, o2);
             }
         };
         System.out.println(mx.max(list, comparator));
         System.out.println(mx.min(list, comparator));
-
     }
-
-
 }

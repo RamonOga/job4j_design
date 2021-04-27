@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Helper {
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     public static int[] createRandomIntArray(int size) {
         int[] rsl = new int[size];
         for (int i = 0; i < size; i++) {
-            rsl[i] = random.nextInt(10);
+            rsl[i] = RANDOM.nextInt(10);
         }
         System.out.println("Created int[], size = " + size + "\n " + Arrays.toString(rsl));
         return rsl;
