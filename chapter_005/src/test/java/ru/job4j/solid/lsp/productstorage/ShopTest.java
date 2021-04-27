@@ -1,10 +1,7 @@
 package ru.job4j.solid.lsp.productstorage;
 
-import org.apache.commons.math3.ode.nonstiff.ThreeEighthesIntegrator;
-import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.solid.lsp.productstorage.foods.*;
-import ru.job4j.solid.ocp.examplethree.Cheese;
 
 import java.util.Calendar;
 import java.util.List;
@@ -13,10 +10,10 @@ import static org.junit.Assert.*;
 
 public class ShopTest {
 
-
     @Test
     public void whenAddToWH() {
         Calendar created = Calendar.getInstance();
+        created.add(Calendar.DATE, -1);
         Calendar expiry = Calendar.getInstance();
         expiry.add(Calendar.DATE, 95);
         Food milk = new Milk("Milk", created.getTime(), expiry.getTime(), 1000);
