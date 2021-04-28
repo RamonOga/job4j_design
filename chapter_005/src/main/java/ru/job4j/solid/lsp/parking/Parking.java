@@ -1,5 +1,6 @@
 package ru.job4j.solid.lsp.parking;
 
 public interface Parking {
-    boolean park(Car car);
+    boolean park(Vehicle Vehicle);
+    Vehicle get(int id);
 }
