@@ -6,11 +6,4 @@ public interface Storage {
     boolean add(Food food);
 
     boolean accept(Food food);
-
-    default int getPercentsFromBirthToDeath(Food food) {
-        long validTime = food.getExpiryDate().getTime() - System.currentTimeMillis();
-        long oneHundredPercents = food.getExpiryDate().getTime() - food.getCreateDate().getTime();
-        int rsl = 100 - (int) ((100 * validTime) / oneHundredPercents);
-        return rsl;
-    }
 }

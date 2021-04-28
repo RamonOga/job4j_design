@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Warehouse implements Storage {
+public class Warehouse implements Storage, PercentCalculator {
     List<Food> foodStorage;
     private final int limit = 25;
 

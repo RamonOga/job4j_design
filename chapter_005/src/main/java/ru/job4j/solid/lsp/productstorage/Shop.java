@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Shop implements Storage {
+public class Shop implements Storage, PercentCalculator {
     List<Food> foodStorage;
     private final int upLimit = 75;
     private final int downLimit = 25;
@@ -38,5 +38,4 @@ public class Shop implements Storage {
         }
         return false;
     }
-
 }
