@@ -1,3 +1,4 @@
+
 package ru.job4j.jmh;
 
 
@@ -17,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 @Fork(value = 2, jvmArgs = {"-Xms2G", "-Xmx2G"})
-//@Warmup(iterations = 3)
-//@Measurement(iterations = 8)
+@Warmup(iterations = 3)
+@Measurement(iterations = 8)
 public class BenchmarkLoop {
 
     @Param({"10000000"})
