@@ -7,6 +7,7 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -44,12 +45,10 @@ public class LastTask {
 
     public static boolean generateBySet(String origin, String line) {
         boolean rsl = true;
-        Set<String> set = new HashSet<>();
-        origin = origin.replaceAll("\\p{Punct}", "");
-        for (String s : origin.split(" ")) {
-            set.add(s);
-        }
-        for(String s : line.split(" ")) {
+        String[] lineArr = line.split(" ");
+        String newOrigin = origin.replaceAll("\\p{Punct}", "");
+        Set<String> set = new HashSet<>(Arrays.asList(newOrigin.split(" ")));
+        for(String s : lineArr) {
             if (!set.contains(s)) {
                 rsl = false;
                 break;
@@ -60,9 +59,10 @@ public class LastTask {
 
     public static boolean generateByLoop(String origin, String line) {
         boolean rsl = true;
+        String newOrigin = origin.replaceAll("\\p{Punct}", "");
         String[] lineArr = line.split(" ");
         for (String s : lineArr) {
-            if (!origin.contains(s)){
+            if (!newOrigin.contains(s)){
                 rsl = false;
                 break;
             }
