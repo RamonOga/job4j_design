@@ -15,20 +15,44 @@ class ListNode {
           this.val = val;
           this.next = next;
       }
-  }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val + '}';
+    }
+}
 
 public class ReverseLinkList {
-
-        public ListNode reverseList(ListNode head) {
-            ListNode one = head;
-            ListNode two = head.next;
-            ListNode three;
-            while (one.next != null) {
-                three = one;
+        public static ListNode reverseList(ListNode head) {
+            ListNode one = null;
+            ListNode two = head;
+            ListNode tmp;
+            while (two != null) {
+                tmp = one;
                 one = two;
                 two = one.next;
-                one.next = three;
+                one.next = tmp;
             }
-            return two;
+            return one;
         }
+
+        public static void print(ListNode ln) {
+            while (ln != null) {
+                System.out.println(ln);
+                ln = ln.next;
+            }
+        }
+
+
+
+    public static void main(String[] args) {
+        ListNode ln = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+
+        print(ln);
+        print(reverseList(ln));
+
+    }
 }
+
+
