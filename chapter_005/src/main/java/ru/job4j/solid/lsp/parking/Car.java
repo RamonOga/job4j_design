@@ -1,8 +1,12 @@
 package ru.job4j.solid.lsp.parking;
 
 public class Car extends Vehicle {
+    public Car(String carNumber) {
+        super(carNumber);
+    }
+
     @Override
-    int size() {
-        return 0;
+    public int size() {
+        return 1;
     }
 }
