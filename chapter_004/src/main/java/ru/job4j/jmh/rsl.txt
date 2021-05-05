@@ -1,3 +1,9 @@
-LastTask.startLoopTest  avgt    8  0,001 ±  0,001  ms/op
-LastTask.startSetTest   avgt    8  0,026 ±  0,005  ms/op
+with fields
+Benchmark               Mode  Cnt  Score   Error  Units
+LastTask.startLoopTest  avgt    8  0,006 ± 0,001  ms/op
+LastTask.startSetTest   avgt    8  0,024 ± 0,003  ms/op
 
+without fields
+Benchmark               Mode  Cnt  Score    Error  Units
+LastTask.startLoopTest  avgt    8  0,002 ±  0,001  ms/op
+LastTask.startSetTest   avgt    8  0,005 ±  0,001  ms/op
