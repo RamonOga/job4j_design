@@ -10,6 +10,6 @@ public class Runner {
                         List.of(new MenuNode("1.1.1"), new MenuNode("1.1.2"))
                 ), new MenuNode("1.2")));
 
-        System.out.println(head.toString());
+        System.out.println(head);
     }
 }
