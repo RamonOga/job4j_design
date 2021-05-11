@@ -39,6 +39,10 @@ public class MenuStorage implements Menu {
 
     @Override
     public String print() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (Item item : rootList) {
+            sb.append(item.toString());
+        }
+        return sb.toString();
     }
 }

@@ -26,13 +26,14 @@ public class Item {
         itemStack.push(this);
         while (!itemStack.isEmpty()) {
             Item current = itemStack.pop();
-            if (current.getName().equals(name)) {
+            String currentName = current.getName();
+            if (currentName.equals(name)) {
                 rsl = current;
                 break;
             }
             if (current.getChildren() != null) {
                 for (Item childrenItem : current.getChildren()) {
-                    childrenItem.findBuName(name);
+                    itemStack.push(childrenItem);
                 }
             }
         }
@@ -59,12 +60,15 @@ public class Item {
 
     @Override
     public String toString() {
-        String rsl = "Menu Name : " + name + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Menu Name : ");
+        sb.append(name);
+        sb.append("\n");
         if (children != null) {
-            for (Item menuNode : children) {
-                rsl += menuNode.toString();
+            for (Item item : children) {
+                sb.append(item.toString());
             }
         }
-         return rsl;
+         return sb.toString();
     }
 }
