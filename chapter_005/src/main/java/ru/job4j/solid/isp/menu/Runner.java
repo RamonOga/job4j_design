@@ -1,17 +1,26 @@
 package ru.job4j.solid.isp.menu;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Runner {
     public static void main(String[] args) {
-        MenuNode head = new MenuNode("1",
-                List.of( new MenuNode("1.1",
-                        List.of(new MenuNode("1.1.1"), new MenuNode("1.1.2"))
-                ), new MenuNode("1.2")));
+        Action action = new SimpleAction();
+        Item item1 = new Item("1", action);
+        Item item11 = new Item("1.1", action);
+        Item item12 = new Item("1.2", action);
+        Item item121 = new Item("1.2.1", action);
+        Item item13 = new Item("1.3", action);
+        Item item2 = new Item("2", action);
+        Item item21 = new Item("1.2", action);
+        Menu menu = new MenuStorage();
+        menu.add(null, item1);
+        menu.add(item1, item11);
+        menu.add(item1, item12);
+        menu.add(item12, item121);
+        menu.add(item1, item13);
+        menu.add(null, item2);
+        menu.add(item2, item21);
 
-        System.out.println(head);
+
     }
 }
