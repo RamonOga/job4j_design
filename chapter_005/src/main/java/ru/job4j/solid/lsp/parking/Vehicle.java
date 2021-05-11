@@ -6,11 +6,11 @@ public abstract class Vehicle {
         this.carNumber = carNumber;
     }
 
+    private final String carNumber;
+
     public String getCarNumber() {
         return carNumber;
     }
-
-    private String carNumber;
 
     public abstract int size();
 }

@@ -8,33 +8,99 @@ import java.util.Optional;
 public class ParkingStorage implements Parking {
 
     private int storageSize;
-    List<Vehicle> vehicleList;
+    private Vehicle[] carsList;
+    private Vehicle[] tracksList;
+    private int carsCount;
+    private int tracksCount;
 
-    public ParkingStorage(int size) {
-        storageSize = size;
-        vehicleList = new ArrayList<>();
+    public ParkingStorage(int carsSize, int tracksSize) {
+        carsList = new Vehicle[carsSize];
+        tracksList = new Vehicle[tracksSize];
     }
 
     @Override
     public boolean park(Vehicle vehicle) {
-        boolean rsl = storageSize >= vehicle.size();
-        if (rsl) {
-            storageSize -= vehicle.size();
-            vehicleList.add(vehicle);
+        boolean rsl = false;
+        if (vehicle == null || vehicle.size() <= 0) {
+            throw new IllegalArgumentException("Vehicle was so not the correct size or equals null!");
+        }
+
+        if (vehicle.size() == 1) {
+           rsl = putVehicle(carsList, vehicle);
+        }
+        if (vehicle.size() == 2) {
+            rsl = putVehicle(tracksList, vehicle);
+            if(!rsl) {
+                rsl = putTrackInCarsStorage(tracksList, vehicle);
+            }
         }
         return rsl;
     }
 
+    private boolean putVehicle(Vehicle[] storage, Vehicle vehicle) {
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i] == null) {
+                storage[i] = vehicle;
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean putTrackInCarsStorage(Vehicle[] storage, Vehicle vehicle) {
+        for (int i = 0; i < storage.length - 1; i++) {
+            if (storage[i] == null && storage[i + 1] == null) {
+                storage[i] = vehicle;
+                storage[i + 1] = vehicle;
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public Vehicle get(String carNumber) {
-        Optional<Vehicle> rsl = vehicleList.stream()
-                .filter(a -> a.getCarNumber().equals(carNumber))
-                .findFirst();
-        if (rsl.isEmpty()) {
-            System.out.println("ebat' prikolachivat'");
-           throw new NoSuchElementException("There is no vehicle with this number in the parking lot.");
-
+        Vehicle rsl;
+        if (carNumber == null) {
+            throw new IllegalArgumentException("Vehicle name cannot be null!");
         }
-        return rsl.get();
+        rsl = getFromCarsList(carNumber);
+        if (rsl == null) {
+            rsl = getFromTrackList(carNumber);
+        }
+        if (rsl == null) {
+            throw new NoSuchElementException("Vehicle with " + carNumber + " no found.");
+        }
+        return rsl;
+    }
+
+    private Vehicle getFromCarsList(String carNumber) {
+        Vehicle rsl = null;
+        for (int i = 0; i < carsList.length; i ++) {
+            if (carsList[i] != null && carsList[i].getCarNumber().equals(carNumber)) {
+                if (carsList[i].size() == 2) {
+                    rsl = carsList[i];
+                    carsList[i] = null;
+                    carsList[i + 1] = null;
+                    break;
+                } else {
+                    rsl = carsList[i];
+                    carsList[i] = null;
+                    break;
+                }
+            }
+        }
+        return rsl;
+    }
+
+    private Vehicle getFromTrackList(String carNumber) {
+        Vehicle rsl = null;
+        for (int i = 0; i < tracksList.length; i ++) {
+            if (tracksList[i] != null && tracksList[i].getCarNumber().equals(carNumber)) {
+                    rsl = tracksList[i];
+                    tracksList[i] = null;
+                    break;
+            }
+        }
+        return rsl;
     }
 }
