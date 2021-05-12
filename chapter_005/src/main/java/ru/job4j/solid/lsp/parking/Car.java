@@ -1,12 +1,23 @@
 package ru.job4j.solid.lsp.parking;
 
 public class Car extends Vehicle {
-    public Car(String carNumber) {
-        super(carNumber);
+
+    private final int size;
+
+    public Car(String carNumber, int size) {
+        if (size != 1) {
+            throw new IllegalArgumentException("Car's size must equal to 1");
+        }
+        super.carNumber = carNumber;
+        this.size = size;
     }
 
+
+    public String getCarNumber() {
+        return carNumber;
+    }
     @Override
     public int size() {
-        return 1;
+        return size;
     }
 }

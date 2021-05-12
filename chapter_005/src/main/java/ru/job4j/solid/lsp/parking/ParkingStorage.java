@@ -1,17 +1,11 @@
 package ru.job4j.solid.lsp.parking;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 public class ParkingStorage implements Parking {
 
-    private int storageSize;
     private Vehicle[] carsList;
     private Vehicle[] tracksList;
-    private int carsCount;
-    private int tracksCount;
 
     public ParkingStorage(int carsSize, int tracksSize) {
         carsList = new Vehicle[carsSize];
@@ -28,7 +22,7 @@ public class ParkingStorage implements Parking {
         if (vehicle.size() == 1) {
            rsl = putVehicle(carsList, vehicle);
         }
-        if (vehicle.size() == 2) {
+        if (vehicle.size() > 1) {
             rsl = putVehicle(tracksList, vehicle);
             if(!rsl) {
                 rsl = putTrackInCarsStorage(tracksList, vehicle);
@@ -46,11 +40,15 @@ public class ParkingStorage implements Parking {
         }
         return false;
     }
+
     private boolean putTrackInCarsStorage(Vehicle[] storage, Vehicle vehicle) {
-        for (int i = 0; i < storage.length - 1; i++) {
-            if (storage[i] == null && storage[i + 1] == null) {
-                storage[i] = vehicle;
-                storage[i + 1] = vehicle;
+        int count = vehicle.size();
+        for (int i = 0; i < storage.length - vehicle.size(); i++) {
+            if (storage[i] == null && findFreePlaceForTruck(storage, i, vehicle.size())) {
+                while (count != 0) {
+                    storage[i] = vehicle;
+                    count--;
+                }
                 return true;
             }
         }
@@ -77,10 +75,14 @@ public class ParkingStorage implements Parking {
         Vehicle rsl = null;
         for (int i = 0; i < carsList.length; i ++) {
             if (carsList[i] != null && carsList[i].getCarNumber().equals(carNumber)) {
-                if (carsList[i].size() == 2) {
+                if (carsList[i].size() > 1) {
                     rsl = carsList[i];
-                    carsList[i] = null;
-                    carsList[i + 1] = null;
+                    int count = rsl.size();
+                    while (count != 0) {
+                        carsList[i] = null;
+                        i++;
+                        count--;
+                    }
                     break;
                 } else {
                     rsl = carsList[i];
@@ -98,6 +100,17 @@ public class ParkingStorage implements Parking {
             if (tracksList[i] != null && tracksList[i].getCarNumber().equals(carNumber)) {
                     rsl = tracksList[i];
                     tracksList[i] = null;
+                    break;
+            }
+        }
+        return rsl;
+    }
+
+    public boolean findFreePlaceForTruck(Vehicle[] vehicles, int index, int size) {
+        boolean rsl = true;
+        for (int i = index; i < index + size; i++) {
+                if (vehicles[i] != null) {
+                    rsl = false;
                     break;
             }
         }
