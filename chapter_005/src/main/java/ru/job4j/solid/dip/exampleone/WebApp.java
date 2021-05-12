@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebApp {
-    List<Developer> developers;
 
-    public WebApp(List<Developer> developers) {
-        this.developers = developers;
+    Service service;
+    List<List<String>> webSiteCode;
+
+
+    public WebApp(Service service) {
+        this.service = service;
     }
 
-    public List<String> work() {
-        List<String> workList = new ArrayList<>();
-        while(true) {
-            for (Developer dev : developers) {
-                workList.add(dev.writeCode());
-            }
-            return workList;
-        }
+    public boolean CreateWebSite() {
+        return webSiteCode
+                .add(service
+                        .doWork(new ArrayList<>()));
     }
 }
