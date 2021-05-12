@@ -63,7 +63,7 @@ public class Item {
         StringBuilder sb = new StringBuilder();
         sb.append("Menu Name : ");
         sb.append(name);
-        sb.append("\n");
+        sb.append(System.lineSeparator());
         if (children != null) {
             for (Item item : children) {
                 sb.append(item.toString());
