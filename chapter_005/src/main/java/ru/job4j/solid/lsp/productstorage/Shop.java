@@ -38,4 +38,9 @@ public class Shop implements Storage, PercentCalculator {
         }
         return false;
     }
+
+    @Override
+    public List<Food> getFoodList() {
+        return foodStorage;
+    }
 }

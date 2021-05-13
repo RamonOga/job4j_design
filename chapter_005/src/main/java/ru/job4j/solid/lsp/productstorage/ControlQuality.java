@@ -34,4 +34,11 @@ public class ControlQuality {
         }
         return rsl;
     }
+
+    public void resort() {
+        for (Storage storage : storageList) {
+            addFoodList(storage.getFoodList());
+        }
+
+    }
 }

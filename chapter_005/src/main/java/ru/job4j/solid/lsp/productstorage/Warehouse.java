@@ -31,4 +31,9 @@ public class Warehouse implements Storage, PercentCalculator {
         int percents = getPercentsFromBirthToDeath(food);
         return percents <= limit && percents > 0;
     }
+
+    @Override
+    public List<Food> getFoodList() {
+        return foodStorage;
+    }
 }

@@ -34,4 +34,9 @@ public class Trash implements Storage {
         }
         return false;
     }
+
+    @Override
+    public List<Food> getFoodList() {
+        return foodStorage;
+    }
 }
