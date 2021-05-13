@@ -4,12 +4,9 @@ public class Car extends Vehicle {
 
     private final int size;
 
-    public Car(String carNumber, int size) {
-        if (size != 1) {
-            throw new IllegalArgumentException("Car's size must equal to 1");
-        }
+    public Car(String carNumber) {
         super.carNumber = carNumber;
-        this.size = size;
+        size = 1;
     }
 
 
