@@ -8,4 +8,5 @@ public interface Storage {
     boolean add(Food food);
     List<Food> getFoodList();
     boolean accept(Food food);
+    void clear();
 }

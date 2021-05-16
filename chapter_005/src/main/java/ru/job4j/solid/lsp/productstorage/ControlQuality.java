@@ -5,12 +5,14 @@ import java.util.List;
 
 public class ControlQuality {
     private List<Storage> storageList;
+    private Temporary temporary;
 
     public ControlQuality(List<Storage> list) {
         if (list == null) {
             throw new IllegalArgumentException("One of the arguments equal null");
         }
         storageList = list;
+        temporary = new Temporary();
     }
 
     public List<Storage> getStorageList() {
@@ -37,7 +39,7 @@ public class ControlQuality {
 
     public void resort() {
         for (Storage storage : storageList) {
-            addFoodList(storage.getFoodList());
+
         }
 
     }

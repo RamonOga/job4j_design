@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Shop implements Storage, PercentCalculator {
-    List<Food> foodStorage;
+    private List<Food> foodStorage;
     private final int upLimit = 75;
     private final int downLimit = 25;
 
@@ -42,5 +42,10 @@ public class Shop implements Storage, PercentCalculator {
     @Override
     public List<Food> getFoodList() {
         return foodStorage;
+    }
+
+    @Override
+    public void clear() {
+        foodStorage.clear();
     }
 }

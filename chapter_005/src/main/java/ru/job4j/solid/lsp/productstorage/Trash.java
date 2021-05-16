@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Trash implements Storage {
-    List<Food> foodStorage;
+    private List<Food> foodStorage;
 
     public Trash() {
         this.foodStorage = new ArrayList<>();
@@ -38,5 +38,10 @@ public class Trash implements Storage {
     @Override
     public List<Food> getFoodList() {
         return foodStorage;
+    }
+
+    @Override
+    public void clear() {
+        foodStorage.clear();
     }
 }

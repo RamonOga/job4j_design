@@ -1,6 +1,7 @@
 package ru.job4j.solid.lsp.productstorage.foods;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Food {
     private String name;
@@ -39,5 +40,22 @@ public class Food {
 
     public void setDiscount(boolean discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return price == food.price &&
+                discount == food.discount &&
+                Objects.equals(name, food.name) &&
+                Objects.equals(expiryDate, food.expiryDate) &&
+                Objects.equals(createDate, food.createDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, expiryDate, createDate, price, discount);
     }
 }

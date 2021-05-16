@@ -20,15 +20,9 @@ public class ShopTest {
         ControlQuality controlQualityT = new ControlQuality(List.of(new Trash()));
         ControlQuality controlQualityS = new ControlQuality(List.of(new Shop()));
         ControlQuality controlQualityW = new ControlQuality(List.of(new Warehouse()));
-        boolean rsl = controlQualityT.addFood(milk);
-        System.out.println(rsl);
-        assertFalse(rsl);
-        rsl = controlQualityS.addFood(milk);
-        System.out.println(rsl);
-        assertFalse(rsl);
-        rsl = controlQualityW.addFood(milk);
-        System.out.println(rsl);
-        assertTrue(rsl);
+        assertFalse(controlQualityT.addFood(milk));
+        assertFalse(controlQualityS.addFood(milk));
+        assertTrue(controlQualityW.addFood(milk));
     }
 
     @Test
@@ -64,11 +58,11 @@ public class ShopTest {
 
     @Test
     public void whenAddToTrash() throws InterruptedException {
-        Calendar creat = Calendar.getInstance();
-        creat.add(Calendar.DATE, -100);
+        Calendar created = Calendar.getInstance();
+        created.add(Calendar.DATE, -100);
         Calendar exp = Calendar.getInstance();
         exp.add(Calendar.DATE, -1);
-        Food choc = new Chocolate("Chocolate", creat.getTime(), exp.getTime(), 1000);
+        Food choc = new Chocolate("Chocolate", created.getTime(), exp.getTime(), 1000);
 
         ControlQuality controlQualityTr = new ControlQuality(List.of(new Trash()));
         ControlQuality controlQualitySh = new ControlQuality(List.of(new Shop()));
