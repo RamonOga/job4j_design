@@ -2,14 +2,33 @@ package ru.job4j.solid.lsp.parking;
 
 import java.util.NoSuchElementException;
 
+/**
+ * @auther Markelov Roman
+ * Class is park cars and trucks.
+ */
 public class ParkingStorage implements Parking {
-
+    /**
+     * array for cars
+     */
     private final Vehicle[] carsList;
+    /**
+     * cars position
+     */
     private int carsPosition;
+    /**
+     * array for trucks
+     */
     private final Vehicle[] trucksList;
+    /**
+     * truck position
+     */
     private int truckPosition;
 
-
+    /**
+     * Constructor for parking
+     * @param carsSize cars parking size
+     * @param trucksSize truck parking size
+     */
     public ParkingStorage(int carsSize, int trucksSize) {
         carsList = new Vehicle[carsSize];
         carsPosition = 0;
@@ -17,6 +36,11 @@ public class ParkingStorage implements Parking {
         truckPosition = 0;
     }
 
+    /**
+     *
+     * @param vehicle Vehicle to park
+     * @return if Vehicle parked, return true. Else return false
+     */
     @Override
     public boolean park(Vehicle vehicle) {
         boolean rsl = false;
@@ -42,7 +66,11 @@ public class ParkingStorage implements Parking {
         return rsl;
     }
 
-
+    /**
+     * method return Vehicle this input carNumber
+     * @param carNumber name of the Car
+     * @return Vehicle this input carNumber
+     */
     @Override
     public Vehicle get(String carNumber) {
         Vehicle rsl = null;
@@ -58,6 +86,12 @@ public class ParkingStorage implements Parking {
         return rsl;
     }
 
+    /**
+     * Method is looking for a free space for a Truck to park it in the cars park.
+     * @param vehicles
+     * @param carNumber
+     * @return
+     */
     private Vehicle getVehicle(Vehicle[] vehicles, String carNumber) {
         Vehicle rsl = null;
         for (Vehicle veh : vehicles) {
