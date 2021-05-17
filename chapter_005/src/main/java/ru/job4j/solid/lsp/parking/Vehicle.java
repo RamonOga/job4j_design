@@ -1,10 +1,11 @@
 package ru.job4j.solid.lsp.parking;
 
 public abstract class Vehicle {
-    protected String carNumber;
-
+    private String carNumber;
     public abstract int size();
-    public Vehicle(){};
+    public Vehicle(String carNumber) {
+        this.carNumber = carNumber;
+    }
     public String getCarNumber() {
         return carNumber;
     }

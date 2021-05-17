@@ -35,6 +35,7 @@ public class ParkingStorage implements Parking {
         } else if (vehicle.size() <= carsList.length - carsPosition) {
             for (int i = 0; i < vehicle.size(); i++ ) {
                 carsList[carsPosition++] = vehicle;
+                rsl = true;
             }
         }
 
