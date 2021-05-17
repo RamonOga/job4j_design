@@ -19,6 +19,15 @@ public class Temporary implements Storage {
         return false;
     }
 
+    public boolean addFoodList(List<Food> foodList) {
+        if (foodList == null) {
+            throw new IllegalArgumentException("Food list cannot be equal null");
+        }
+        int tmp = temporaryStorage.size();
+        temporaryStorage.addAll(foodList);
+        return tmp != temporaryStorage.size();
+    }
+
     @Override
     public List<Food> getFoodList() {
         return temporaryStorage;

@@ -39,8 +39,10 @@ public class ControlQuality {
 
     public void resort() {
         for (Storage storage : storageList) {
-
+            temporary.addFoodList(storage.getFoodList());
+            storage.clear();
         }
+        addFoodList(temporary.getFoodList());
 
     }
 }
