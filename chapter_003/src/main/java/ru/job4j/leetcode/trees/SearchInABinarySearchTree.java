@@ -4,11 +4,12 @@ import java.util.Stack;
 
 public class SearchInABinarySearchTree {
 
-        public TreeNode searchBST(TreeNode root, int val) {
+        public static TreeNode searchBST(TreeNode root, int val) {
             Stack<TreeNode> stack = new Stack<>();
             stack.push(root);
 
             while (!stack.isEmpty()) {
+                System.out.println(root.value);
                 root = stack.pop();
                 if (root.value == val) {
                     return root;

@@ -1,6 +1,9 @@
 package ru.job4j.leetcode.trees;
 
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class TreeNode {
     int value;
@@ -27,6 +30,7 @@ public class TreeNode {
     }
     public static int reverseDeepSum(TreeNode node) {
         int sum = node.value;
+        System.out.println(sum);
         if (node.left != null) {
             sum += reverseDeepSum(node.left);
         }
@@ -43,6 +47,7 @@ public class TreeNode {
         int sum = 0;
 
         while (!stack.isEmpty()) {
+            System.out.println(current.value);
             if (current.left != null) {
                 stack.push(current.left);
             }
@@ -54,5 +59,28 @@ public class TreeNode {
             current = stack.pop();
         }
         return sum;
+    }
+
+    public static int iterWide(TreeNode node, int val) {
+        int rsl = -1;
+        Queue<TreeNode> queue = new LinkedBlockingQueue<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            if (current.value == val) {
+                rsl = current.value;
+                break;
+            }
+            System.out.println(current.value);
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+
+        return rsl;
     }
 }
