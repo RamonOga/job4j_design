@@ -63,11 +63,9 @@ public class ShopTest {
         Calendar exp = Calendar.getInstance();
         exp.add(Calendar.DATE, -1);
         Food choc = new Chocolate("Chocolate", created.getTime(), exp.getTime(), 1000);
-
         ControlQuality controlQualityTr = new ControlQuality(List.of(new Trash()));
         ControlQuality controlQualitySh = new ControlQuality(List.of(new Shop()));
         ControlQuality controlQualityWh = new ControlQuality(List.of(new Warehouse()));
-
         assertTrue(controlQualityTr.addFood(choc));
         assertFalse(controlQualitySh.addFood(choc));
         assertFalse(controlQualityWh.addFood(choc));
