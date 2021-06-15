@@ -20,7 +20,6 @@ public class SearchInABinarySearchTree {
                 if (root.right != null) {
                     stack.push(root.right);
                 }
-
             }
             return null;
         }
